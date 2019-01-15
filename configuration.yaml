@@ -1,0 +1,184 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Oslo
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.media_player.spotify: info
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+lovelace:
+  mode: yaml
+
+# Cloud
+cloud:
+  google_actions:
+    filter:
+      exclude_domains:
+        - media_player
+        - group
+      exclude_entities:
+        - light.Sofa
+        - input_boolean.fake
+    entity_config:
+      switch.Heater:
+        name: Heater
+        room: living room
+
+
+group: !include groups.yaml
+
+script: !include scripts.yaml
+
+input_boolean:
+  fake:
+    initial: off
+  heater_auto_on:
+    initial: off
+
+scene:
+  - name: Warm
+    entities:
+      light.Sofa:
+        state: true
+        rgb_color: [255,255,255]
+        white_value: 255
+        brightness: 50
+  - name: Orange
+    entities:
+      light.Sofa:
+        state: true
+        rgb_color: [255,21,0]
+        white_value: 0
+        brightness: 255
+  - name: Blue
+    entities:
+      light.Sofa:
+        state: true
+        rgb_color: [0,255,136]
+        white_value: 0
+        brightness: 255
+  - name: Party
+    entities:
+      light.Sofa:
+        white_value: 0
+        state: true
+        rgb_color: [255,255,255]
+        brightness: 255
+      input_boolean.fake:
+        state: on
+
+automation:
+  alias: Party
+  trigger:
+    platform: state
+    entity_id: input_boolean.fake
+    to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.sofa
+      data:
+        effect: white_strobe
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.fake
+
+light:
+  - platform: flux_led
+    devices:
+      192.168.1.4:
+        name: 'Sofa'
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts: !secrets device_tracker_ip
+    consider_home: 0:15:00
+    interval_seconds: 30
+    new_device_defaults:
+      track_new_devices: false
+
+zone: !include zones.yaml
+
+
+switch:
+  - platform: tplink
+    host: 192.168.1.12
+    name: 'Heater'
+
+
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret configurator_ip
+
+media_player:
+  - platform: spotify
+    client_id: !secret spotify_id
+    client_secret: !secret spotify_secret
+
+input_datetime:
+  only_time:
+    name: Time
+    has_date: false
+    has_time: true
