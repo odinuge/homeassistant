@@ -150,7 +150,7 @@ light:
 
 device_tracker:
   - platform: nmap_tracker
-    hosts: !secrets device_tracker_ip
+    hosts: !secret device_tracker_ip
     consider_home: 0:15:00
     interval_seconds: 30
     new_device_defaults:
