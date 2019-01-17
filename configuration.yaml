@@ -80,6 +80,10 @@ cloud:
       exclude_entities:
         - light.Sofa
         - input_boolean.fake
+        - light.Bedroom
+        - light.Living_Room
+        - input_boolean.heater_auto_on
+
     entity_config:
       switch.Heater:
         name: Heater

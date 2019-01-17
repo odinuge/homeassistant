@@ -20,6 +20,35 @@ views:
     cards:
       - type: vertical-stack
         cards:
+        - type: entities
+          title: Bedroom
+          show_header_toggle: true
+          entities:
+          - entity: light.bedroom
+            name: Begge
+            icon: mdi:lamp
+          - entity: light.bed1
+            name: Charlotte
+            icon: mdi:lamp
+          - entity: light.bed_2
+            name: Henrik
+            icon: mdi:lamp
+        - type: entities
+          title: Devices
+          show_header_toggle: false
+          entities:
+            - entity: switch.heater
+              icon: mdi:fire
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.heater_auto_on
+              name: Enable 20 minute morning heater
+              icon: mdi:loop
+            - input_datetime.only_time
+
+      - type: vertical-stack
+        cards:
         - type: horizontal-stack
           cards:
             - type: custom:card-modder
@@ -89,70 +118,62 @@ views:
           show_header_toggle: true
           entities:
             - light.sofa
+            - entity: switch.floor_lamp
+              icon: mdi:floor-lamp
+            - entity: light.work_light
+              icon: mdi:desk-lamp
+
+      - type: vertical-stack
+        cards:
         - type: entities
-          title: Devices
+          title: Media Players
           show_header_toggle: false
           entities:
-            - entity: switch.heater
-              icon: mdi:fire
-        - type: entities
-          show_header_toggle: false
-          entities:
-            - entity: input_boolean.heater_auto_on
-              name: Enable 20 minute morning heater
-              icon: mdi:loop
-            - input_datetime.only_time
-
-
-      - type: entities
-        title: Media Players
-        show_header_toggle: false
-        entities:
-          - entity: media_player.kitchen_tv
-            type: custom:mini-media-player
-            name: Kitchen TV
-            icon: mdi:television
-            hide_power: false
-            group: true
-          - type: divider
-            style:
-              height: 2px
-              background-color: "#dddddd"
-              margin-top: 40px
-              margin-bottom: 40px
-          - entity: media_player.spotify
-            type: custom:mini-media-player
-            hide_volume: true
-            hide_power: true
-            group: true
-          - entity: media_player.home
-            type: custom:mini-media-player
-            icon: mdi:music
-            artwork: none
-            hide_controls: true
-            hide_media_info: true
-            hide_mute: true
-            hide_power: true
-            group: true
-          - entity: media_player.kitchen_speaker
-            type: custom:mini-media-player
-            icon: mdi:music
-            artwork: none
-            hide_controls: true
-            hide_media_info: true
-            hide_mute: true
-            hide_power: true
-            group: true
-          - entity: media_player.music_surround
-            type: custom:mini-media-player
-            icon: mdi:music
-            artwork: none
-            hide_controls: true
-            hide_media_info: true
-            hide_power: true
-            hide_mute: true
-            group: true
-      #- type: media-control
+            - entity: media_player.kitchen_tv
+              type: custom:mini-media-player
+              name: Kitchen TV
+              icon: mdi:television
+              hide_power: false
+              group: true
+            - type: divider
+              style:
+                height: 2px
+                background-color: "#dddddd"
+                margin-top: 40px
+                margin-bottom: 40px
+            - entity: media_player.spotify
+              type: custom:mini-media-player
+              hide_volume: true
+              hide_power: true
+              group: true
+            - entity: media_player.home
+              type: custom:mini-media-player
+              icon: mdi:music
+              artwork: none
+              hide_controls: true
+              hide_media_info: true
+              hide_mute: true
+              hide_power: true
+              group: true
+            - entity: media_player.kitchen_speaker
+              type: custom:mini-media-player
+              icon: mdi:music
+              artwork: none
+              hide_controls: true
+              hide_media_info: true
+              hide_mute: true
+              hide_power: true
+              group: true
+            - entity: media_player.music_surround
+              type: custom:mini-media-player
+              icon: mdi:music
+              artwork: none
+              hide_controls: true
+              hide_media_info: true
+              hide_power: true
+              hide_mute: true
+              group: true
+       #- type: media-control
        # entity: media_player.kitchen_tv
     #  - type: media-control
      #   entity: media_player.kitchen_speaker
