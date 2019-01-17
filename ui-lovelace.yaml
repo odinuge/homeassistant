@@ -28,10 +28,10 @@ views:
             name: Begge
             icon: mdi:lamp
           - entity: light.bed1
-            name: Charlotte
+            name: Henrik
             icon: mdi:lamp
           - entity: light.bed_2
-            name: Henrik
+            name: Charlotte
             icon: mdi:lamp
         - type: entities
           title: Devices
