@@ -1,0 +1,2106 @@
+[
+    {
+        "id": "2b16d656.3b7442",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "93261f8a.0afd58",
+        "type": "server-state-changed",
+        "z": "2b16d656.3b7442",
+        "name": "Sofa strobe scene (see configuration.yaml) activated",
+        "server": "5d298046.09a7b",
+        "entityidfilter": "input_boolean.fake",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "x": 224.49998474121094,
+        "y": 289.59999084472656,
+        "wires": [
+            [
+                "46c8a1e0.7acce8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "46c8a1e0.7acce8",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Disable warm white",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"white_value\":0}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 550.5,
+        "y": 282.3999938964844,
+        "wires": [
+            [
+                "53675945.b273e"
+            ]
+        ]
+    },
+    {
+        "id": "e83c7a9d.c3af7",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Activate strobe",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"effect\":\"white_strobe\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 902.5,
+        "y": 281.3999938964844,
+        "wires": [
+            [
+                "b1b6df1d.6de298"
+            ]
+        ]
+    },
+    {
+        "id": "b1b6df1d.6de298",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Turn off fake switch",
+        "server": "5d298046.09a7b",
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"input_boolean.fake\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1110.5,
+        "y": 280.4000244140625,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c413a41.29a1",
+        "type": "inject",
+        "z": "2b16d656.3b7442",
+        "name": "2min loop",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "120",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 93.5,
+        "y": 470.7999725341797,
+        "wires": [
+            [
+                "9a25d484.6a6188"
+            ]
+        ]
+    },
+    {
+        "id": "9a25d484.6a6188",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Heater automation on?",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "input_boolean.heater_auto_on",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 297.5,
+        "y": 467.60003662109375,
+        "wires": [
+            [
+                "907be31e.131c58"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1dacb4dc.7c3e2b",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Get activation time",
+        "server": "5d298046.09a7b",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "input_datetime.only_time",
+        "state_type": "str",
+        "outputs": 1,
+        "x": 961.5,
+        "y": 461.4000244140625,
+        "wires": [
+            [
+                "46107cfc.7cbc54"
+            ]
+        ]
+    },
+    {
+        "id": "46107cfc.7cbc54",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Should it be on?",
+        "func": "date = new Date()\ncurrenthours = (date.getHours()).toString()\ncurrentminutes = date.getMinutes().toString()\n\nstarthours = msg.payload.substring(0,2)\nstartminutes = msg.payload.substring(3,5)\nendhours = Number(starthours)\nendminutes = Number(startminutes)+30\nif (endminutes > 59) {\n    endminutes-= 60\n    endhours++\n}\nif (endminutes < 10) {\n    endminutes = \"0\"+endminutes.toString()\n}\ncurrent = currenthours+currentminutes\nstart = starthours+startminutes\nend = endhours.toString()+endminutes.toString()\n\n\nendhours = endhours.toString()\nendminutes = endminutes.toString()\n\n\n\nmsg.payload = 1\n\nif (Number(current) < Number(start) || Number(current) > Number(end)) {\n    msg.payload = 0\n}\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 127.5,
+        "y": 544.6000366210938,
+        "wires": [
+            [
+                "c42b9a9d.3faea8"
+            ]
+        ]
+    },
+    {
+        "id": "c42b9a9d.3faea8",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "Yes / no",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 282.5,
+        "y": 547.4000244140625,
+        "wires": [
+            [
+                "3ca2fb4f.f9cca4"
+            ],
+            [
+                "beb6aeb7.9f247"
+            ]
+        ]
+    },
+    {
+        "id": "a301442.3e18db8",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Turn it on",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.heater\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1000.944580078125,
+        "y": 546.066650390625,
+        "wires": [
+            [
+                "51823efe.4f3ff8"
+            ]
+        ]
+    },
+    {
+        "id": "12342884.b8f897",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Turn off",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.heater\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 591.5,
+        "y": 595.4000244140625,
+        "wires": [
+            [
+                "b246cf92.558848"
+            ]
+        ]
+    },
+    {
+        "id": "253c6621.3e3492",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Heater off?",
+        "server": "5d298046.09a7b",
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "switch.heater",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 856.3888549804688,
+        "y": 545.7333984375,
+        "wires": [
+            [
+                "a301442.3e18db8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "beb6aeb7.9f247",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Heater on?",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "switch.heater",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 445.5,
+        "y": 597.4000244140625,
+        "wires": [
+            [
+                "12342884.b8f897"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "87ce3a54.2d2068",
+        "type": "server-events",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "event_type": "deconz_event",
+        "x": 105,
+        "y": 1265,
+        "wires": [
+            [
+                "1a5af534.0a989b"
+            ]
+        ]
+    },
+    {
+        "id": "1a5af534.0a989b",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload = msg.payload.event.event\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 329.5,
+        "y": 1303.4000244140625,
+        "wires": [
+            [
+                "24d7b6e9.66e6ba"
+            ]
+        ]
+    },
+    {
+        "id": "aef304fc.959538",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3003",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 6,
+        "x": 121.49998474121094,
+        "y": 943.2000427246094,
+        "wires": [
+            [
+                "5d739af1.5c3b74",
+                "7e536a87.8ba41c",
+                "fd56afd3.fd9c68"
+            ],
+            [
+                "e59037b1.282278"
+            ],
+            [
+                "16c0f425.0c2d3c"
+            ],
+            [
+                "928875c6.7b1d9",
+                "f59399c1.cc8de",
+                "e0197953.7bf9e"
+            ],
+            [
+                "62c2a512.d1addc"
+            ],
+            [
+                "eb02bb5b.493c4",
+                "21fdc434.eb57d4",
+                "4ee57262.d9ec3c"
+            ]
+        ]
+    },
+    {
+        "id": "16c0f425.0c2d3c",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_next_track",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 403.5,
+        "y": 905.4000549316406,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e59037b1.282278",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_previous_track",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 411.20001220703125,
+        "y": 860.4000549316406,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac184a93.e94828",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_up",
+        "data": "{\"entity_id\":\"media_player.music_surround\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1317.199951171875,
+        "y": 783.4000549316406,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "62c2a512.d1addc",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_play_pause",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 376.20001220703125,
+        "y": 952.4000549316406,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6acffb9d.b04a74",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Alle disse skriver inn ID til hvilken media player",
+        "func": "msg.payload.entity_id=\"media_player.home\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1141.5,
+        "y": 691.5999755859375,
+        "wires": [
+            [
+                "ac184a93.e94828"
+            ]
+        ]
+    },
+    {
+        "id": "72e29908.525c28",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_down",
+        "data": "",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1335.2000122070312,
+        "y": 913.4000549316406,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d739af1.5c3b74",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.home",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 814.5,
+        "y": 748.4000549316406,
+        "wires": [
+            [
+                "6acffb9d.b04a74"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "711df7a8.19c56",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.kitchen_speaker\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1106.199951171875,
+        "y": 785.6000061035156,
+        "wires": [
+            [
+                "ac184a93.e94828"
+            ]
+        ]
+    },
+    {
+        "id": "7e536a87.8ba41c",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.kitchen_speaker",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 845.2000122070312,
+        "y": 796.4000549316406,
+        "wires": [
+            [
+                "711df7a8.19c56"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3f82b282.a32b96",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.music_surround\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1101,
+        "y": 835.6000061035156,
+        "wires": [
+            [
+                "ac184a93.e94828"
+            ]
+        ]
+    },
+    {
+        "id": "fd56afd3.fd9c68",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.music_surround",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 834,
+        "y": 840.4000549316406,
+        "wires": [
+            [
+                "3f82b282.a32b96"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7e285499.e88554",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.home\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1090,
+        "y": 895.4000549316406,
+        "wires": [
+            [
+                "72e29908.525c28"
+            ]
+        ]
+    },
+    {
+        "id": "928875c6.7b1d9",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.home",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 815,
+        "y": 908.2001037597656,
+        "wires": [
+            [
+                "7e285499.e88554"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a327684d.9ced7",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.kitchen_speaker\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1106.699951171875,
+        "y": 945.4000549316406,
+        "wires": [
+            [
+                "72e29908.525c28"
+            ]
+        ]
+    },
+    {
+        "id": "f59399c1.cc8de",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.kitchen_speaker",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 845.7000122070312,
+        "y": 956.2001037597656,
+        "wires": [
+            [
+                "a327684d.9ced7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "343938b0.356e88",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.music_surround\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1101.5,
+        "y": 995.4000549316406,
+        "wires": [
+            [
+                "72e29908.525c28"
+            ]
+        ]
+    },
+    {
+        "id": "e0197953.7bf9e",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.music_surround",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 834.5,
+        "y": 1000.2001037597656,
+        "wires": [
+            [
+                "343938b0.356e88"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "95054f8f.622f",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.home\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 628,
+        "y": 1057.4000244140625,
+        "wires": [
+            [
+                "c7674b7.dd0bf38"
+            ]
+        ]
+    },
+    {
+        "id": "eb02bb5b.493c4",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.home",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 353,
+        "y": 1070.2000732421875,
+        "wires": [
+            [
+                "95054f8f.622f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3fb3e913.47640e",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.kitchen_speaker\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 644.699951171875,
+        "y": 1107.4000244140625,
+        "wires": [
+            [
+                "c7674b7.dd0bf38"
+            ]
+        ]
+    },
+    {
+        "id": "21fdc434.eb57d4",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.kitchen_speaker",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 383.70001220703125,
+        "y": 1118.2000732421875,
+        "wires": [
+            [
+                "3fb3e913.47640e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6c28c6e5.f8232",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.music_surround\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 639.5,
+        "y": 1157.4000244140625,
+        "wires": [
+            [
+                "c7674b7.dd0bf38"
+            ]
+        ]
+    },
+    {
+        "id": "4ee57262.d9ec3c",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "media_player.music_surround",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 372.5,
+        "y": 1162.2000732421875,
+        "wires": [
+            [
+                "6c28c6e5.f8232"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c7674b7.dd0bf38",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "data": "{\"volume_level\":0.1}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 918,
+        "y": 1115.4000549316406,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af76d74d.87646",
+        "type": "inject",
+        "z": "2b16d656.3b7442",
+        "name": "Every night",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 87.27783203125,
+        "y": 395.6222686767578,
+        "wires": [
+            [
+                "e6407c62.2e25c8"
+            ]
+        ]
+    },
+    {
+        "id": "e6407c62.2e25c8",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Reset \"triggered/stopped today\" variables",
+        "func": "flow.set('triggered_today',0)\nflow.set('stopped_today',0)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 648.27783203125,
+        "y": 386.3555145263672,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "51823efe.4f3ff8",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Note that it has been triggered today",
+        "func": "flow.set(\"triggered_today\",1)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1240.1668701171875,
+        "y": 545.35546875,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ca2fb4f.f9cca4",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Already triggered today?",
+        "func": "if (flow.get(\"triggered_today\") == 1 ) {\nmsg.payload = 1\n} else {\n    msg.payload = 0\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 484.5,
+        "y": 523.7999877929688,
+        "wires": [
+            [
+                "6ac90ebb.de086"
+            ]
+        ]
+    },
+    {
+        "id": "6ac90ebb.de086",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "Yes/no",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 659.8888549804688,
+        "y": 524.6666870117188,
+        "wires": [
+            [
+                "52cda401.ea2c4c"
+            ],
+            [
+                "253c6621.3e3492"
+            ]
+        ]
+    },
+    {
+        "id": "b44edbe2.8a85c",
+        "type": "server-state-changed",
+        "z": "2b16d656.3b7442",
+        "name": "Heater switch changed",
+        "server": "5d298046.09a7b",
+        "entityidfilter": "input_boolean.heater_auto_on",
+        "entityidfiltertype": "substring",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 116.11116027832031,
+        "y": 353.5555877685547,
+        "wires": [
+            [
+                "e6407c62.2e25c8"
+            ]
+        ]
+    },
+    {
+        "id": "e89959f8.72ed5",
+        "type": "server-state-changed",
+        "z": "2b16d656.3b7442",
+        "name": "Time changed",
+        "server": "5d298046.09a7b",
+        "entityidfilter": "input_datetime.only_time",
+        "entityidfiltertype": "substring",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 89.4444580078125,
+        "y": 433.5555419921875,
+        "wires": [
+            [
+                "e6407c62.2e25c8"
+            ]
+        ]
+    },
+    {
+        "id": "24d7b6e9.66e6ba",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4003",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5003",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 470,
+        "y": 1304,
+        "wires": [
+            [
+                "113e5d49.fc35eb"
+            ],
+            [
+                "23691ed.ffd9462"
+            ],
+            [
+                "1adddc32.d8a03c"
+            ],
+            [
+                "c7b5186.2f4aee8"
+            ],
+            [
+                "3784ea38.f1120e"
+            ],
+            [
+                "4f6a60a5.fb395"
+            ],
+            [
+                "a1e40c8a.5265e"
+            ]
+        ]
+    },
+    {
+        "id": "3784ea38.f1120e",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "toggle",
+        "data": "{\"entity_id\":\"light.bed\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 739,
+        "y": 1376,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a1e40c8a.5265e",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "light.light_1",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 717,
+        "y": 1465,
+        "wires": [
+            [
+                "4e109e6d.ad7208"
+            ],
+            [
+                "ef5a868b.bc8"
+            ]
+        ]
+    },
+    {
+        "id": "4e109e6d.ad7208",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.light_1\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1042,
+        "y": 1421,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef5a868b.bc8",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_1\",\"brightness\":190}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1042,
+        "y": 1470,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f6a60a5.fb395",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "toggle",
+        "data": "{\"entity_id\":\"switch.light_4\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 751,
+        "y": 1422,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1adddc32.d8a03c",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "light.bed",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 701,
+        "y": 1282,
+        "wires": [
+            [
+                "fcbd2083.acf058"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fcbd2083.acf058",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Prev color calc",
+        "func": "colors = [\"white\",\"PeachPuff\",\"red\",\"orange\",\"green\",\"blue\",\"purple\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"warm\")\n    current_color = \"warm\"\n}\n\nmsg.payload = {\"data\":{\"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 946,
+        "y": 1285,
+        "wires": [
+            [
+                "c4a413e6.6254e",
+                "3a7fb5bf.1e98ea"
+            ]
+        ]
+    },
+    {
+        "id": "c4a413e6.6254e",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1199,
+        "y": 1216,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23691ed.ffd9462",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "light.bed",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 702,
+        "y": 1244,
+        "wires": [
+            [
+                "2e89754c.49eac2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2e89754c.49eac2",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Next color calc",
+        "func": "colors = [\"white\",\"PeachPuff\",\"red\",\"orange\",\"green\",\"blue\",\"purple\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)-1\n    if (i <= 0) {\n        i = colors.length-1\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"warm\")\n    current_color = \"warm\"\n}\n\nmsg.payload = {\"data\":{\"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 946,
+        "y": 1241,
+        "wires": [
+            [
+                "c4a413e6.6254e",
+                "3a7fb5bf.1e98ea"
+            ]
+        ]
+    },
+    {
+        "id": "113e5d49.fc35eb",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "light.bed",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 697,
+        "y": 1201,
+        "wires": [
+            [
+                "79342579.46ce7c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "79342579.46ce7c",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Brightness up calc",
+        "func": "brightness = msg.data.attributes.brightness + 40;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 951,
+        "y": 1192,
+        "wires": [
+            [
+                "c98e55fe.caa5c8"
+            ]
+        ]
+    },
+    {
+        "id": "c98e55fe.caa5c8",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.bed\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1170,
+        "y": 1169,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7b5186.2f4aee8",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "light.bed",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 704,
+        "y": 1330,
+        "wires": [
+            [
+                "41906f08.50c288"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "41906f08.50c288",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Brightness down calc",
+        "func": "brightness = msg.data.attributes.brightness-40;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 962,
+        "y": 1330,
+        "wires": [
+            [
+                "ef174ace.39a23"
+            ]
+        ]
+    },
+    {
+        "id": "ef174ace.39a23",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.bed\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1182,
+        "y": 1312,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74732ae0.c87d7c",
+        "type": "trigger-state",
+        "z": "2b16d656.3b7442",
+        "name": "Henrik kommet hjem?",
+        "server": "5d298046.09a7b",
+        "entityid": "device_tracker.henrik_note9",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "2f77bj3rb6m",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "previous_state",
+                "propertyValue": "old_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "away"
+            },
+            {
+                "id": "qpr3upjnbtn",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "home"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 113,
+        "y": 1512,
+        "wires": [
+            [
+                "c3f37fd9.364e5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a831b4ed.f31ae8",
+        "type": "trigger-state",
+        "z": "2b16d656.3b7442",
+        "name": "Charlotte kommet hjem?",
+        "server": "5d298046.09a7b",
+        "entityid": "device_tracker.charlotte_iphone",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "2f77bj3rb6m",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "previous_state",
+                "propertyValue": "old_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "away"
+            },
+            {
+                "id": "qpr3upjnbtn",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "home"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 123,
+        "y": 1553,
+        "wires": [
+            [
+                "d39a7fee.ebbc28"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c3f37fd9.364e5",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Charlotte er ikke hjemme nå?",
+        "server": "5d298046.09a7b",
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.charlotte_iphone",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 403,
+        "y": 1510,
+        "wires": [
+            [
+                "6eaaef72.2e625"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d39a7fee.ebbc28",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Henrik er ikke hjemme nå?",
+        "server": "5d298046.09a7b",
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.henrik_note9",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 395,
+        "y": 1549,
+        "wires": [
+            [
+                "3ccf1943.ed72f6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e4cfe10e.31a23",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Skru på gulvlampe",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.light_4\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1037,
+        "y": 1530,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d661ce16.d7e8a8",
+        "type": "delay",
+        "z": "2b16d656.3b7442",
+        "name": "5m delay for dobbelsjekk",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 510,
+        "y": 1652,
+        "wires": [
+            [
+                "bca7561.cc095a8",
+                "100207ed.f2772"
+            ]
+        ]
+    },
+    {
+        "id": "bca7561.cc095a8",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Status Charlotte",
+        "server": "5d298046.09a7b",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.charlotte_iphone",
+        "state_type": "str",
+        "outputs": 1,
+        "x": 709,
+        "y": 1598,
+        "wires": [
+            [
+                "3d7b8613.ec314a"
+            ]
+        ]
+    },
+    {
+        "id": "100207ed.f2772",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Status Henrik",
+        "server": "5d298046.09a7b",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.henrik_note9",
+        "state_type": "str",
+        "outputs": 1,
+        "x": 718,
+        "y": 1680,
+        "wires": [
+            [
+                "3d7b8613.ec314a"
+            ]
+        ]
+    },
+    {
+        "id": "3d7b8613.ec314a",
+        "type": "join",
+        "z": "2b16d656.3b7442",
+        "name": "Slå sammen svar til en string",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 863,
+        "y": 1635,
+        "wires": [
+            [
+                "b4cefed1.99774"
+            ]
+        ]
+    },
+    {
+        "id": "b4cefed1.99774",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "begge borte ( \"awayaway\" )",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "awayaway",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1121,
+        "y": 1636,
+        "wires": [
+            [
+                "6c8c947b.1f39ec",
+                "d19f62d6.10f0b"
+            ]
+        ]
+    },
+    {
+        "id": "6c8c947b.1f39ec",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"group.all_lights\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1311,
+        "y": 1592,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d19f62d6.10f0b",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.light_4\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1315,
+        "y": 1676,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b5cfba5a.a2436",
+        "type": "trigger-state",
+        "z": "2b16d656.3b7442",
+        "name": "Henrik dratt?",
+        "server": "5d298046.09a7b",
+        "entityid": "device_tracker.henrik_note9",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "oprimvric2e",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "previous_state",
+                "propertyValue": "old_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "home"
+            },
+            {
+                "id": "roy2j19svq",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "away"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 82,
+        "y": 1618,
+        "wires": [
+            [
+                "91f44747.94a4d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c1e054b7.51efb",
+        "type": "trigger-state",
+        "z": "2b16d656.3b7442",
+        "name": "Charlotte dratt?",
+        "server": "5d298046.09a7b",
+        "entityid": "device_tracker.charlotte_iphone",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "oprimvric2e",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "previous_state",
+                "propertyValue": "old_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "home"
+            },
+            {
+                "id": "roy2j19svq",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "away"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 88,
+        "y": 1710,
+        "wires": [
+            [
+                "f2a7c382.de5d5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "91f44747.94a4d8",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Charlotte også borte?",
+        "server": "5d298046.09a7b",
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.charlotte_iphone",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 275,
+        "y": 1612,
+        "wires": [
+            [
+                "d661ce16.d7e8a8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f2a7c382.de5d5",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Charlotte også borte?",
+        "server": "5d298046.09a7b",
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.henrik_note9",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 293,
+        "y": 1705,
+        "wires": [
+            [
+                "d661ce16.d7e8a8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "53675945.b273e",
+        "type": "delay",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": ".5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 735,
+        "y": 282,
+        "wires": [
+            [
+                "e83c7a9d.c3af7"
+            ]
+        ]
+    },
+    {
+        "id": "3a7fb5bf.1e98ea",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_3\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1214,
+        "y": 1274,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7eba26ce.8f787",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Dobbelsjekk H hjemme",
+        "server": "5d298046.09a7b",
+        "halt_if": "away",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.henrik_note9",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 795,
+        "y": 1501,
+        "wires": [
+            [
+                "e4cfe10e.31a23"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d759236d.33c53",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Dobbelsjekk C hjemme",
+        "server": "5d298046.09a7b",
+        "halt_if": "away",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "device_tracker.charlotte_iphone",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 807,
+        "y": 1545,
+        "wires": [
+            [
+                "e4cfe10e.31a23"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6eaaef72.2e625",
+        "type": "delay",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 607,
+        "y": 1506,
+        "wires": [
+            [
+                "7eba26ce.8f787"
+            ]
+        ]
+    },
+    {
+        "id": "3ccf1943.ed72f6",
+        "type": "delay",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 607,
+        "y": 1552,
+        "wires": [
+            [
+                "d759236d.33c53"
+            ]
+        ]
+    },
+    {
+        "id": "907be31e.131c58",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Has it been turned off today?",
+        "func": "if (flow.get(\"stopped_today\") == 1 ) {\nmsg.payload = 0\n} else {\n    msg.payload = 1\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 554,
+        "y": 465,
+        "wires": [
+            [
+                "298e7cf1.bc928c"
+            ]
+        ]
+    },
+    {
+        "id": "298e7cf1.bc928c",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "If not turned off",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 769,
+        "y": 464,
+        "wires": [
+            [
+                "1dacb4dc.7c3e2b"
+            ]
+        ]
+    },
+    {
+        "id": "52cda401.ea2c4c",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "Heater off?",
+        "server": "5d298046.09a7b",
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": true,
+        "override_data": true,
+        "entity_id": "switch.heater",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 858,
+        "y": 512,
+        "wires": [
+            [
+                "6fc3a5ae.efc8c4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6fc3a5ae.efc8c4",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Note that is has been turned off today",
+        "func": "flow.set(\"stopped_today\",1)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1117,
+        "y": 512,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b246cf92.558848",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Note that is has been turned off today",
+        "func": "flow.set(\"stopped_today\",1)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 843,
+        "y": 596,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d298046.09a7b",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open"
+    }
+]
