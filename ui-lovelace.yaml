@@ -3,11 +3,11 @@
 # https://github.com/dale3h/python-lovelace
 
 resources:
-  - url: /local/card-modder.js
-    type: module
   - url: /local/mini-media-player-bundle.js?v=0.9.8
     type: module
-  - url: /local/card-tools.js
+  - url: /local/plugins/card-tools.js?v=11
+    type: js
+  - url: /local/plugins/card-modder.js?v=11
     type: module
 
 title: Home
@@ -229,15 +229,6 @@ views:
               hide_media_info: true
               hide_mute: true
               hide_power: true
-              group: true
-            - entity: media_player.music_surround
-              type: custom:mini-media-player
-              icon: mdi:music
-              artwork: none
-              hide_controls: true
-              hide_media_info: true
-              hide_power: true
-              hide_mute: true
               group: true
        #- type: media-control
        # entity: media_player.kitchen_tv
