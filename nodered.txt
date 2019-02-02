@@ -38,90 +38,6 @@
         "ha_boolean": "y|yes|true|on|home|open"
     },
     {
-        "id": "93261f8a.0afd58",
-        "type": "server-state-changed",
-        "z": "2b16d656.3b7442",
-        "name": "Sofa strobe scene (see configuration.yaml) activated",
-        "server": "5d298046.09a7b",
-        "entityidfilter": "input_boolean.fake",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "off",
-        "halt_if_type": "",
-        "halt_if_compare": "is",
-        "outputs": 2,
-        "x": 231.49998474121094,
-        "y": 155.59999084472656,
-        "wires": [
-            [
-                "46c8a1e0.7acce8"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "46c8a1e0.7acce8",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "Disable warm white",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_on",
-        "data": "{\"entity_id\":\"light.sofa\",\"white_value\":0}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 557.5,
-        "y": 148.39999389648438,
-        "wires": [
-            [
-                "53675945.b273e"
-            ]
-        ]
-    },
-    {
-        "id": "e83c7a9d.c3af7",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "Activate strobe",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_on",
-        "data": "{\"entity_id\":\"light.sofa\",\"effect\":\"white_strobe\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 909.5,
-        "y": 147.39999389648438,
-        "wires": [
-            [
-                "b1b6df1d.6de298"
-            ]
-        ]
-    },
-    {
-        "id": "b1b6df1d.6de298",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "Turn off fake switch",
-        "server": "5d298046.09a7b",
-        "service_domain": "input_boolean",
-        "service": "turn_off",
-        "data": "{\"entity_id\":\"input_boolean.fake\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "x": 1117.5,
-        "y": 146.4000244140625,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "87ce3a54.2d2068",
         "type": "server-events",
         "z": "2b16d656.3b7442",
@@ -132,7 +48,8 @@
         "y": 726.0000305175781,
         "wires": [
             [
-                "775fe3c5.1dd85c"
+                "775fe3c5.1dd85c",
+                "db971cd.65901e"
             ]
         ]
     },
@@ -246,25 +163,6 @@
         ]
     },
     {
-        "id": "ac184a93.e94828",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "volume_up",
-        "data": "{\"entity_id\":\"media_player.music_surround\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1317.199951171875,
-        "y": 783.4000549316406,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "62c2a512.d1addc",
         "type": "api-call-service",
         "z": "2b16d656.3b7442",
@@ -279,41 +177,6 @@
         "output_location_type": "msg",
         "x": 376.20001220703125,
         "y": 952.4000549316406,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6acffb9d.b04a74",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "Alle disse skriver inn ID til hvilken media player",
-        "func": "msg.payload.entity_id=\"media_player.home\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1141.5,
-        "y": 691.5999755859375,
-        "wires": [
-            [
-                "ac184a93.e94828"
-            ]
-        ]
-    },
-    {
-        "id": "72e29908.525c28",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "volume_down",
-        "data": "",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1335.2000122070312,
-        "y": 913.4000549316406,
         "wires": [
             []
         ]
@@ -337,7 +200,7 @@
         "y": 748.4000549316406,
         "wires": [
             [
-                "6acffb9d.b04a74"
+                "4e07c935.b4115"
             ],
             []
         ]
@@ -347,14 +210,14 @@
         "type": "function",
         "z": "2b16d656.3b7442",
         "name": "",
-        "func": "msg.payload.entity_id=\"media_player.kitchen_speaker\"\nreturn msg;",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.kitchen_speaker\"};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1106.199951171875,
-        "y": 785.6000061035156,
+        "x": 1111.199951171875,
+        "y": 752.5999450683594,
         "wires": [
             [
-                "ac184a93.e94828"
+                "88bee899.8b5298"
             ]
         ]
     },
@@ -383,22 +246,6 @@
         ]
     },
     {
-        "id": "3f82b282.a32b96",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "msg.payload.entity_id=\"media_player.music_surround\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1101,
-        "y": 835.6000061035156,
-        "wires": [
-            [
-                "ac184a93.e94828"
-            ]
-        ]
-    },
-    {
         "id": "fd56afd3.fd9c68",
         "type": "api-current-state",
         "z": "2b16d656.3b7442",
@@ -417,25 +264,9 @@
         "y": 840.4000549316406,
         "wires": [
             [
-                "3f82b282.a32b96"
+                "b1f0ba65.97f64"
             ],
             []
-        ]
-    },
-    {
-        "id": "7e285499.e88554",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "msg.payload.entity_id=\"media_player.home\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1090,
-        "y": 895.4000549316406,
-        "wires": [
-            [
-                "72e29908.525c28"
-            ]
         ]
     },
     {
@@ -457,25 +288,9 @@
         "y": 908.2001037597656,
         "wires": [
             [
-                "7e285499.e88554"
+                "fa248b04.f16e6"
             ],
             []
-        ]
-    },
-    {
-        "id": "a327684d.9ced7",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "msg.payload.entity_id=\"media_player.kitchen_speaker\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1106.699951171875,
-        "y": 945.4000549316406,
-        "wires": [
-            [
-                "72e29908.525c28"
-            ]
         ]
     },
     {
@@ -497,25 +312,9 @@
         "y": 956.2001037597656,
         "wires": [
             [
-                "a327684d.9ced7"
+                "8625d4d9.ba4178"
             ],
             []
-        ]
-    },
-    {
-        "id": "343938b0.356e88",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "msg.payload.entity_id=\"media_player.music_surround\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1101.5,
-        "y": 995.4000549316406,
-        "wires": [
-            [
-                "72e29908.525c28"
-            ]
         ]
     },
     {
@@ -537,7 +336,7 @@
         "y": 1000.2001037597656,
         "wires": [
             [
-                "343938b0.356e88"
+                "672b0a17.28fed4"
             ],
             []
         ]
@@ -1054,29 +853,6 @@
         "y": 1312,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "53675945.b273e",
-        "type": "delay",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": ".5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 742,
-        "y": 148,
-        "wires": [
-            [
-                "e83c7a9d.c3af7"
-            ]
         ]
     },
     {
@@ -1739,11 +1515,12 @@
         "crontab": "00 00 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "x": 115.66116333007812,
-        "y": 229.06668090820312,
+        "x": 122.66116333007812,
+        "y": 230.06668090820312,
         "wires": [
             [
-                "3c56de9a.f8fe3a"
+                "3c56de9a.f8fe3a",
+                "2cf56907.a391fe"
             ]
         ]
     },
@@ -3140,7 +2917,7 @@
                 "5117b0e7.e29e5"
             ],
             [
-                "58ddd84a.640f38"
+                "8b578f9d.d7a99"
             ]
         ]
     },
@@ -3208,8 +2985,8 @@
         "entity_id": "light.bath",
         "state_type": "str",
         "outputs": 2,
-        "x": 665.88330078125,
-        "y": 1625.2831420898438,
+        "x": 571.88330078125,
+        "y": 1711.283203125,
         "wires": [
             [
                 "2329e002.14fdc"
@@ -3230,8 +3007,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 913.88330078125,
-        "y": 1619.2833251953125,
+        "x": 787.88330078125,
+        "y": 1711.2833251953125,
         "wires": [
             []
         ]
@@ -3244,13 +3021,13 @@
         "server": "5d298046.09a7b",
         "service_domain": "light",
         "service": "turn_on",
-        "data": "{\"entity_id\":\"light.bath\",\"brightness\":255,\"color_name\":\"red\",\"white_value\":0}",
+        "data": "{\"entity_id\":\"light.bath\"}",
         "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 933.88330078125,
-        "y": 1573.2831420898438,
+        "x": 1155.88330078125,
+        "y": 1589.283203125,
         "wires": [
             []
         ]
@@ -3272,20 +3049,6 @@
         ]
     },
     {
-        "id": "ffd7e3ec.35ec2",
-        "type": "debug",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 453.76666259765625,
-        "y": 1687.7333374023438,
-        "wires": []
-    },
-    {
         "id": "3c471fd5.5a8cf",
         "type": "api-call-service",
         "z": "2b16d656.3b7442",
@@ -3300,6 +3063,357 @@
         "output_location_type": "msg",
         "x": 1152.88330078125,
         "y": 1535.2833251953125,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88bee899.8b5298",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "data": "",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1470.88330078125,
+        "y": 738.8832702636719,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e07c935.b4115",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.home\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1112.88330078125,
+        "y": 699.88330078125,
+        "wires": [
+            [
+                "88bee899.8b5298"
+            ]
+        ]
+    },
+    {
+        "id": "b1f0ba65.97f64",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.music_surround\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1102.88330078125,
+        "y": 821.88330078125,
+        "wires": [
+            [
+                "88bee899.8b5298"
+            ]
+        ]
+    },
+    {
+        "id": "5c4ffd2c.33ecb4",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "data": "",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1367.88330078125,
+        "y": 927.88330078125,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "672b0a17.28fed4",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.music_surround\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1091.88330078125,
+        "y": 1003.88330078125,
+        "wires": [
+            [
+                "5c4ffd2c.33ecb4"
+            ]
+        ]
+    },
+    {
+        "id": "8625d4d9.ba4178",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.kitchen_speaker\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1119.88330078125,
+        "y": 949.88330078125,
+        "wires": [
+            [
+                "5c4ffd2c.33ecb4"
+            ]
+        ]
+    },
+    {
+        "id": "fa248b04.f16e6",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.home\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1094.88330078125,
+        "y": 889.8832702636719,
+        "wires": [
+            [
+                "5c4ffd2c.33ecb4"
+            ]
+        ]
+    },
+    {
+        "id": "db971cd.65901e",
+        "type": "debug",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 306.76666259765625,
+        "y": 1464.933349609375,
+        "wires": []
+    },
+    {
+        "id": "8b578f9d.d7a99",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "Next color calc",
+        "func": "colors = [\"BlueViolet\",\"red\",\"purple\",\"blue\",\"green\",\"cyan\", \"warm\"]\ncurrent_color = flow.get(\"current_color_bath\") || false\n\n\nif (current_color) {\n    if (current_color == \"cyan\") {\n        msg.payload = {\"data\": {\"brightness\":100,\"rgb_color\":[255,255,255],\"white_value\":255}}\n        flow.set(\"current_color_bath\",\"warm\")\n        return msg\n    }\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color_bath\",current_color)\n}\nelse {\n    flow.set(\"current_color_bath\",\"red\")\n    current_color = \"red\"\n}\n\nmsg.payload = {\"data\": {\"brightness\":255, \"white_value\":0, \"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 939.88330078125,
+        "y": 1589.683349609375,
+        "wires": [
+            [
+                "58ddd84a.640f38"
+            ]
+        ]
+    },
+    {
+        "id": "6344817b.6e451",
+        "type": "server-events",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "event_type": "call_service",
+        "x": 108.76666259765625,
+        "y": 366,
+        "wires": [
+            [
+                "5f406fe7.bcb48"
+            ]
+        ]
+    },
+    {
+        "id": "5f406fe7.bcb48",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "property": "payload.event.service_data.entity_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "scene.party",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "scene.warm",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "scene.orange",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "scene.blue",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 292.76666259765625,
+        "y": 366.9499816894531,
+        "wires": [
+            [
+                "e6210b0.82c1178"
+            ],
+            [
+                "f25c35e7.4435e8"
+            ],
+            [
+                "58c84e71.d43bb"
+            ],
+            [
+                "ff33d026.4e269"
+            ]
+        ]
+    },
+    {
+        "id": "e6210b0.82c1178",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Disable warm white",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"white_value\":0}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 648.88330078125,
+        "y": 338.8833312988281,
+        "wires": [
+            [
+                "cfbb411a.9fc75"
+            ]
+        ]
+    },
+    {
+        "id": "e0c6dae5.12b278",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Activate strobe",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"effect\":\"white_strobe\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1000.88330078125,
+        "y": 337.8833312988281,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cfbb411a.9fc75",
+        "type": "delay",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": ".5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 833.38330078125,
+        "y": 338.48333740234375,
+        "wires": [
+            [
+                "e0c6dae5.12b278"
+            ]
+        ]
+    },
+    {
+        "id": "f25c35e7.4435e8",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Activate warm",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"brightness\":50,\"white_value\":255,\"rgb_color\":[255,255,255]}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 652.88330078125,
+        "y": 391.48333740234375,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58c84e71.d43bb",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Activate orange",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"brightness\":255,\"white_value\":0,\"rgb_color\":[255,35,0]}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 653.88330078125,
+        "y": 438.8833312988281,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff33d026.4e269",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Activate blue",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"brightness\":255,\"white_value\":0,\"rgb_color\":[0,255,200]}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 641.88330078125,
+        "y": 487.8833312988281,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2cf56907.a391fe",
+        "type": "api-call-service",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "counter",
+        "service": "increment",
+        "data": "{\"entity_id\":\"counter.plant_counter\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 617.88330078125,
+        "y": 184.88333129882812,
         "wires": [
             []
         ]
