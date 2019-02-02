@@ -100,53 +100,27 @@ input_boolean:
     initial: off
   heater_auto_on:
     initial: off
+  wake_up_light:
+    initial: off
 
 scene:
   - name: Warm
     entities:
-      light.Sofa:
-        state: true
-        rgb_color: [255,255,255]
-        white_value: 255
-        brightness: 50
+      input_boolean.fake:
+        state: off
   - name: Orange
     entities:
-      light.Sofa:
-        state: true
-        rgb_color: [255,21,0]
-        white_value: 0
-        brightness: 255
+      input_boolean.fake:
+        state: off
   - name: Blue
     entities:
-      light.Sofa:
-        state: true
-        rgb_color: [0,255,136]
-        white_value: 0
-        brightness: 255
+      input_boolean.fake:
+        state: off
   - name: Party
     entities:
-      light.Sofa:
-        white_value: 0
-        state: true
-        rgb_color: [255,255,255]
-        brightness: 255
       input_boolean.fake:
-        state: on
-
-automation:
-  alias: Party
-  trigger:
-    platform: state
-    entity_id: input_boolean.fake
-    to: 'on'
-  action:
-    - service: light.turn_on
-      entity_id: light.sofa
-      data:
-        effect: white_strobe
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.fake
-
+        state: off
+        
 light:
   - platform: flux_led
     automatic_add: true
@@ -191,3 +165,15 @@ input_datetime:
     name: Time
     has_date: false
     has_time: true
+
+counter:
+  plant_counter:
+    initial: 0
+    step: 1
+    
+sensor:
+  - platform: template
+    sensors:
+      since_watered:
+        friendly_name: "Days since watered"
+        value_template: "{{ states('counter.plant_counter') }}"

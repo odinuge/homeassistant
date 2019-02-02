@@ -20,6 +20,31 @@ views:
     cards:
       - type: vertical-stack
         cards:
+        - type: custom:card-modder
+          style:
+            --paper-card-background-color: rgba(0, 100, 0, 0.4)
+            --paper-item-icon-color: white
+            width: 150px
+            text-align: center
+            height: 120px
+            font-size: 120%
+            margin-left: auto
+            margin-right: 0px
+            color: white
+            
+          card:
+            type: glance
+            show_state: true
+            show_name: true
+            entities:
+              - entity: sensor.since_watered
+                icon: mdi:flower-tulip
+                name: Days ago
+                hold_action:
+                  action: call-service
+                  service: counter.reset
+                  service_data:
+                    entity_id: counter.plant_counter
         - type: entities
           title: Bedroom
           show_header_toggle: false
@@ -42,10 +67,15 @@ views:
         - type: entities
           show_header_toggle: false
           entities:
+            - entity: input_datetime.only_time
+              name: 30 minute activation
             - entity: input_boolean.heater_auto_on
-              name: Enable 30 minute morning heater
+              name: Heater
               icon: mdi:loop
-            - input_datetime.only_time
+            - entity: input_boolean.wake_up_light
+              name: Wake-up light
+              icon: mdi:loop
+
 
       - type: vertical-stack
         cards:
