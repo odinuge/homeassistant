@@ -51,7 +51,7 @@ views:
           entities:
           - entity: light.bed
             name: Begge
-            icon: mdi:lamp
+            icon: mdi:human-male-female
           - entity: light.light_2
             name: Henrik
             icon: mdi:lamp
@@ -71,10 +71,10 @@ views:
               name: 30 minute activation
             - entity: input_boolean.heater_auto_on
               name: Heater
-              icon: mdi:loop
+              icon: mdi:settings
             - entity: input_boolean.wake_up_light
               name: Wake-up light
-              icon: mdi:loop
+              icon: mdi:settings
 
 
       - type: vertical-stack
@@ -144,10 +144,11 @@ views:
                       service_data:
                         entity_id: scene.party
         - type: entities
-          title: Lights
+          title: Living room
           show_header_toggle: true
           entities:
-            - light.sofa
+            - entity: light.sofa
+              icon: mdi:sofa
             - entity: switch.light_4
               icon: mdi:floor-lamp
               name: Floor
@@ -158,7 +159,9 @@ views:
           title: Bath
           show_header_toggle: false
           entities:
-            - light.bath
+            - entity: light.bath
+              name: Wall
+              icon: mdi:wall-sconce-flat
 
       - type: vertical-stack
         cards:
@@ -174,16 +177,14 @@ views:
               group: true
             - type: divider
               style:
-                height: 2px
-                background-color: "#dddddd"
                 margin-top: 40px
                 margin-bottom: 40px
             - entity: media_player.spotify
               type: custom:mini-media-player
+              artwork: cover
               hide_volume: true
               show_shuffle: true
               hide_power: true
-              group: true
               media_buttons:
                 - name: C2018
                   type: playlist
@@ -213,6 +214,15 @@ views:
                   type: playlist
                   url: spotify:user:spotify:playlist:37i9dQZF1DX4xuWVBs4FgJ
             - entity: media_player.home
+              type: custom:mini-media-player
+              icon: mdi:music
+              artwork: none
+              hide_controls: true
+              hide_media_info: true
+              hide_mute: true
+              hide_power: true
+              group: true
+            - entity: media_player.googlehome5130
               type: custom:mini-media-player
               icon: mdi:music
               artwork: none
