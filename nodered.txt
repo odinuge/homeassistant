@@ -2,7 +2,7 @@
     {
         "id": "2b16d656.3b7442",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Remotes",
         "disabled": false,
         "info": ""
     },
@@ -186,15 +186,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.home",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 814.5,
         "y": 748.4000549316406,
         "wires": [
@@ -226,15 +226,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.kitchen_speaker",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 845.2000122070312,
         "y": 796.4000549316406,
         "wires": [
@@ -250,15 +250,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.googlehome5130",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 834,
         "y": 840.4000549316406,
         "wires": [
@@ -274,15 +274,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.home",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 815,
         "y": 908.2001037597656,
         "wires": [
@@ -298,15 +298,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.kitchen_speaker",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 845.7000122070312,
         "y": 956.2001037597656,
         "wires": [
@@ -322,15 +322,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.googlehome5130",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 834.5,
         "y": 1000.2001037597656,
         "wires": [
@@ -362,15 +362,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.home",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 353,
         "y": 1070.2000732421875,
         "wires": [
@@ -402,15 +402,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.kitchen_speaker",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 383.70001220703125,
         "y": 1118.2000732421875,
         "wires": [
@@ -442,15 +442,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "media_player.googlehome5130",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 372.5,
         "y": 1162.2000732421875,
         "wires": [
@@ -577,15 +577,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.light_1",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 717,
         "y": 1465,
         "wires": [
@@ -660,15 +660,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 701,
         "y": 1282,
         "wires": [
@@ -701,15 +701,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 702,
         "y": 1244,
         "wires": [
@@ -742,15 +742,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 697,
         "y": 1201,
         "wires": [
@@ -801,15 +801,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 704,
         "y": 1330,
         "wires": [
@@ -918,15 +918,15 @@
         "z": "b4c3c701.b0d7a",
         "name": "Heater automation on?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_boolean.heater_auto_on",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 303.8833312988281,
         "y": 369.04443359375,
         "wires": [
@@ -942,15 +942,15 @@
         "z": "b4c3c701.b0d7a",
         "name": "Get activation time",
         "server": "5d298046.09a7b",
+        "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_datetime.only_time",
         "state_type": "str",
-        "outputs": 1,
+        "override_payload": true,
+        "override_data": true,
         "x": 967.8833312988281,
         "y": 362.84442138671875,
         "wires": [
@@ -1056,15 +1056,15 @@
         "z": "b4c3c701.b0d7a",
         "name": "Heater off?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "switch.heater",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 862.7721862792969,
         "y": 447.17779541015625,
         "wires": [
@@ -1080,15 +1080,15 @@
         "z": "b4c3c701.b0d7a",
         "name": "Heater on?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "switch.heater",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 451.8833312988281,
         "y": 498.84442138671875,
         "wires": [
@@ -1287,15 +1287,15 @@
         "z": "b4c3c701.b0d7a",
         "name": "Heater off?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "switch.heater",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 864.3833312988281,
         "y": 413.44439697265625,
         "wires": [
@@ -1414,15 +1414,15 @@
         "z": "b4c3c701.b0d7a",
         "name": "Get brightness",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 1438.2666320800781,
         "y": 230.927734375,
         "wires": [
@@ -1461,15 +1461,15 @@
         "z": "b4c3c701.b0d7a",
         "name": "Er lyset av?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 959.2666320800781,
         "y": 264.3277282714844,
         "wires": [
@@ -1485,15 +1485,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Wake up light automation on?",
         "server": "5d298046.09a7b",
+        "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_boolean.wake_up_light",
         "state_type": "str",
-        "outputs": 1,
+        "override_payload": true,
+        "override_data": true,
         "x": 339.8833312988281,
         "y": 342.0444641113281,
         "wires": [
@@ -1608,15 +1608,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Get activation time",
         "server": "5d298046.09a7b",
+        "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_datetime.only_time",
         "state_type": "str",
-        "outputs": 1,
+        "override_payload": true,
+        "override_data": true,
         "x": 1250.88330078125,
         "y": 369.4834289550781,
         "wires": [
@@ -1737,15 +1737,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Heater automation on?",
         "server": "5d298046.09a7b",
+        "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_boolean.heater_auto_on",
         "state_type": "str",
-        "outputs": 1,
+        "override_payload": true,
+        "override_data": true,
         "x": 323.8833312988281,
         "y": 398.2833557128906,
         "wires": [
@@ -1922,15 +1922,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Get brightness",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 1395,
         "y": 470.2500305175781,
         "wires": [
@@ -1969,15 +1969,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Er lyset av?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bed",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 931,
         "y": 486.6500244140625,
         "wires": [
@@ -1993,15 +1993,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Wake up light automation on?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_boolean.wake_up_light",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 767.61669921875,
         "y": 612.20556640625,
         "wires": [
@@ -2038,15 +2038,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Heater off?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "switch.heater",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 969.3275146484375,
         "y": 776.3501281738281,
         "wires": [
@@ -2076,15 +2076,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Heater off?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "switch.heater",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 994.938720703125,
         "y": 737.6167297363281,
         "wires": [
@@ -2114,15 +2114,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Heater automation on?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_boolean.heater_auto_on",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 771.88330078125,
         "y": 790.8833312988281,
         "wires": [
@@ -2138,15 +2138,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Heater automation on?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "input_boolean.heater_auto_on",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 770.88330078125,
         "y": 746.6833801269531,
         "wires": [
@@ -2183,15 +2183,15 @@
         "z": "f93c10c0.1dd628",
         "name": "Heater on?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "switch.heater",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 313.88336181640625,
         "y": 929.4834289550781,
         "wires": [
@@ -2237,11 +2237,21 @@
                 "t": "eq",
                 "v": "tradfri_wireless_dimmer",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "switch_4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "switch_6",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 3,
+        "outputs": 5,
         "x": 82.76666259765625,
         "y": 799.1499328613281,
         "wires": [
@@ -2249,10 +2259,16 @@
                 "24d7b6e9.66e6ba"
             ],
             [
-                "aef304fc.959538"
+                "24d7b6e9.66e6ba"
             ],
             [
                 "83701ba8.310a6"
+            ],
+            [
+                "d5afa19b.e7253"
+            ],
+            [
+                "ca7ebc1d.0c037"
             ]
         ]
     },
@@ -2302,65 +2318,20 @@
         ]
     },
     {
-        "id": "f619c84.be975b8",
-        "type": "trigger-state",
-        "z": "a76bf01b.13bf98",
-        "name": "Charlotte kommet hjem?",
-        "server": "5d298046.09a7b",
-        "entityid": "device_tracker.charlotte_iphone",
-        "entityidfiltertype": "exact",
-        "debugenabled": false,
-        "constraints": [
-            {
-                "id": "qpr3upjnbtn",
-                "targetType": "this_entity",
-                "targetValue": "",
-                "propertyType": "current_state",
-                "propertyValue": "new_state.state",
-                "comparatorType": "is",
-                "comparatorValueDatatype": "str",
-                "comparatorValue": "home"
-            },
-            {
-                "id": "95b99raq575",
-                "targetType": "this_entity",
-                "targetValue": "",
-                "propertyType": "previous_state",
-                "propertyValue": "old_state.state",
-                "comparatorType": "is_not",
-                "comparatorValueDatatype": "str",
-                "comparatorValue": "home"
-            }
-        ],
-        "constraintsmustmatch": "all",
-        "outputs": 2,
-        "customoutputs": [],
-        "outputinitially": false,
-        "state_type": "str",
-        "x": 122.88333129882812,
-        "y": 195.88333129882812,
-        "wires": [
-            [
-                "e0037758.1d986"
-            ],
-            []
-        ]
-    },
-    {
         "id": "abe0f6d0.cb7048",
         "type": "api-current-state",
         "z": "a76bf01b.13bf98",
         "name": "Charlotte er ikke hjemme nå?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "home",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.charlotte_iphone",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 391.8833312988281,
         "y": 144.88333129882812,
         "wires": [
@@ -2376,15 +2347,15 @@
         "z": "a76bf01b.13bf98",
         "name": "Henrik er ikke hjemme nå?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "home",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.henrik_note9",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 394.8833312988281,
         "y": 191.88333129882812,
         "wires": [
@@ -2407,8 +2378,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1036.8833312988281,
-        "y": 172.88333129882812,
+        "x": 1220.8832893371582,
+        "y": 162.88332748413086,
         "wires": [
             []
         ]
@@ -2443,15 +2414,15 @@
         "z": "a76bf01b.13bf98",
         "name": "Status Charlotte",
         "server": "5d298046.09a7b",
+        "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.charlotte_iphone",
         "state_type": "str",
-        "outputs": 1,
+        "override_payload": true,
+        "override_data": true,
         "x": 708.8833312988281,
         "y": 240.88333129882812,
         "wires": [
@@ -2466,15 +2437,15 @@
         "z": "a76bf01b.13bf98",
         "name": "Status Henrik",
         "server": "5d298046.09a7b",
+        "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.henrik_note9",
         "state_type": "str",
-        "outputs": 1,
+        "override_payload": true,
+        "override_data": true,
         "x": 717.8833312988281,
         "y": 322.8833312988281,
         "wires": [
@@ -2621,65 +2592,20 @@
         ]
     },
     {
-        "id": "f76cf2e9.42664",
-        "type": "trigger-state",
-        "z": "a76bf01b.13bf98",
-        "name": "Charlotte dratt?",
-        "server": "5d298046.09a7b",
-        "entityid": "device_tracker.charlotte_iphone",
-        "entityidfiltertype": "exact",
-        "debugenabled": false,
-        "constraints": [
-            {
-                "id": "oprimvric2e",
-                "targetType": "this_entity",
-                "targetValue": "",
-                "propertyType": "previous_state",
-                "propertyValue": "old_state.state",
-                "comparatorType": "is",
-                "comparatorValueDatatype": "str",
-                "comparatorValue": "home"
-            },
-            {
-                "id": "kk7iacffn58",
-                "targetType": "this_entity",
-                "targetValue": "",
-                "propertyType": "current_state",
-                "propertyValue": "new_state.state",
-                "comparatorType": "is_not",
-                "comparatorValueDatatype": "str",
-                "comparatorValue": "home"
-            }
-        ],
-        "constraintsmustmatch": "all",
-        "outputs": 2,
-        "customoutputs": [],
-        "outputinitially": false,
-        "state_type": "str",
-        "x": 87.88333129882812,
-        "y": 352.8833312988281,
-        "wires": [
-            [
-                "abdd9e5e.e255f"
-            ],
-            []
-        ]
-    },
-    {
         "id": "2b263ac6.b7e2c6",
         "type": "api-current-state",
         "z": "a76bf01b.13bf98",
         "name": "Charlotte også borte?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "home",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.charlotte_iphone",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 274.8833312988281,
         "y": 254.88333129882812,
         "wires": [
@@ -2695,15 +2621,15 @@
         "z": "a76bf01b.13bf98",
         "name": "Henrik også borte?",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "home",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.henrik_note9",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 282.8833312988281,
         "y": 347.8833312988281,
         "wires": [
@@ -2719,20 +2645,20 @@
         "z": "a76bf01b.13bf98",
         "name": "Dobbelsjekk H hjemme",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "home",
         "halt_if_type": "str",
         "halt_if_compare": "is_not",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.henrik_note9",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 794.8833312988281,
         "y": 143.88333129882812,
         "wires": [
             [
-                "d5b47ee.8c75e8"
+                "2ccff2d5.f274de"
             ],
             []
         ]
@@ -2743,21 +2669,19 @@
         "z": "a76bf01b.13bf98",
         "name": "Dobbelsjekk C hjemme",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "home",
         "halt_if_type": "str",
         "halt_if_compare": "is_not",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "device_tracker.charlotte_iphone",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 806.8833312988281,
         "y": 187.88333129882812,
         "wires": [
-            [
-                "d5b47ee.8c75e8"
-            ],
+            [],
             []
         ]
     },
@@ -2900,15 +2824,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bath",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 687.7666015625,
         "y": 1539.3999633789062,
         "wires": [
@@ -2975,15 +2899,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "off",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": true,
-        "override_data": true,
         "entity_id": "light.bath",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": true,
+        "override_data": true,
         "x": 571.88330078125,
         "y": 1711.283203125,
         "wires": [
@@ -3409,15 +3333,15 @@
         "z": "2b16d656.3b7442",
         "name": "",
         "server": "5d298046.09a7b",
+        "outputs": 2,
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "override_payload": false,
-        "override_data": true,
         "entity_id": "light.sofa",
         "state_type": "str",
-        "outputs": 2,
+        "override_payload": false,
+        "override_data": true,
         "x": 438.7666320800781,
         "y": 367.3999328613281,
         "wires": [
@@ -3473,6 +3397,484 @@
             [
                 "5f406fe7.bcb48"
             ]
+        ]
+    },
+    {
+        "id": "2ccff2d5.f274de",
+        "type": "time-range-switch",
+        "z": "a76bf01b.13bf98",
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "startTime": "07:00",
+        "endTime": "22:30",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1010.1000137329102,
+        "y": 138.60006141662598,
+        "wires": [
+            [
+                "d5b47ee.8c75e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d5afa19b.e7253",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "next = [3002,5003,4005,2004]\nprev = [2003, 3005, 5004, 4002]\n\nplaypause = [1001,2002,3003,4004,5005,6006,7007]\n\nevent = msg.payload.event.event\n\nif (next.indexOf(event) > -1) {\n    msg.payload = \"next\"\n}\n\nelse if (prev.indexOf(event) > -1) {\n    msg.payload = \"prev\"\n}\n\nelse if(playpause.indexOf(event) > -1) {\n    msg.payload = \"playpause\"\n}\n\n\n\nelse {\n    msg.payload = \"none\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 125.10000228881836,
+        "y": 1933.2001280784607,
+        "wires": [
+            [
+                "e9eb931a.4d564"
+            ]
+        ]
+    },
+    {
+        "id": "e9eb931a.4d564",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "Media control",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "prev",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "next",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "playpause",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "skip",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 291.83330726623535,
+        "y": 1957.0890312194824,
+        "wires": [
+            [
+                "76879c71.41cd74"
+            ],
+            [
+                "4519dfd2.0e63c"
+            ],
+            [
+                "c96bd3b8.d0bc2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b4087680.580158",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_next_track",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 921.8333396911621,
+        "y": 1933.2888050079346,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c537024.15235",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_previous_track",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 929.5333099365234,
+        "y": 1874.2888050079346,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca93cc65.c6da2",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_play_pause",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 941.5333137512207,
+        "y": 2110.288805961609,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca7ebc1d.0c037",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nevent = msg.payload.event.event\n\n\nmsg.payload = parseInt(event) / 36000\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 113.16667556762695,
+        "y": 2419.333456993103,
+        "wires": [
+            [
+                "cfc4245d.98e1c8",
+                "93f682ac.ecaa5",
+                "5435799c.0e11a8",
+                "ea8da811.1d8158"
+            ]
+        ]
+    },
+    {
+        "id": "cfc4245d.98e1c8",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "playing",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": true,
+        "entity_id": "media_player.home",
+        "state_type": "str",
+        "override_payload": false,
+        "override_data": true,
+        "x": 403,
+        "y": 2347.333595275879,
+        "wires": [
+            [
+                "82adbf30.dc724"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a729441.1bcfcb8",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\nmsg.payload = {\"data\":{\"volume_level\": parseFloat(volume), \"entity_id\":\"media_player.kitchen_speaker\"}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 715.8818054199219,
+        "y": 2371.2604427337646,
+        "wires": [
+            [
+                "a708b4c1.ef4f48"
+            ]
+        ]
+    },
+    {
+        "id": "93f682ac.ecaa5",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "playing",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": true,
+        "entity_id": "media_player.kitchen_speaker",
+        "state_type": "str",
+        "override_payload": false,
+        "override_data": true,
+        "x": 427.8818664550781,
+        "y": 2405.060591697693,
+        "wires": [
+            [
+                "a729441.1bcfcb8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5435799c.0e11a8",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "playing",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": true,
+        "entity_id": "media_player.googlehome5130",
+        "state_type": "str",
+        "override_payload": false,
+        "override_data": true,
+        "x": 438.6818542480469,
+        "y": 2459.060552597046,
+        "wires": [
+            [
+                "bd8a969d.b0ba48"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a708b4c1.ef4f48",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "data": "",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1075.5651550292969,
+        "y": 2357.543767929077,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd8a969d.b0ba48",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume, \"entity_id\":\"media_player.googlehome5130\"}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 707.5651550292969,
+        "y": 2440.5437984466553,
+        "wires": [
+            [
+                "a708b4c1.ef4f48"
+            ]
+        ]
+    },
+    {
+        "id": "82adbf30.dc724",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume, \"entity_id\":\"media_player.home\"}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 709.9848480224609,
+        "y": 2310.317193031311,
+        "wires": [
+            [
+                "a708b4c1.ef4f48"
+            ]
+        ]
+    },
+    {
+        "id": "ea8da811.1d8158",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.tv",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 395,
+        "y": 2294.4443531036377,
+        "wires": [
+            [
+                "e283e3a1.31feb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e283e3a1.31feb",
+        "type": "function",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume, \"entity_id\":\"media_player.tv\"}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 713,
+        "y": 2260.4443359375,
+        "wires": [
+            [
+                "a708b4c1.ef4f48"
+            ]
+        ]
+    },
+    {
+        "id": "c96bd3b8.d0bc2",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.tv",
+        "state_type": "str",
+        "override_payload": false,
+        "override_data": true,
+        "x": 603,
+        "y": 2060.4443359375,
+        "wires": [
+            [
+                "98f782a1.3f307"
+            ],
+            [
+                "ca93cc65.c6da2"
+            ]
+        ]
+    },
+    {
+        "id": "cb2e199.580d2e8",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_play_pause",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1260.0000457763672,
+        "y": 2025.5555305480957,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4519dfd2.0e63c",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.tv",
+        "state_type": "str",
+        "override_payload": false,
+        "override_data": true,
+        "x": 600,
+        "y": 1937.2221813201904,
+        "wires": [
+            [],
+            [
+                "b4087680.580158"
+            ]
+        ]
+    },
+    {
+        "id": "76879c71.41cd74",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.tv",
+        "state_type": "str",
+        "override_payload": false,
+        "override_data": true,
+        "x": 601,
+        "y": 1878.2221813201904,
+        "wires": [
+            [],
+            [
+                "4c537024.15235"
+            ]
+        ]
+    },
+    {
+        "id": "98f782a1.3f307",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "playing",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.spotify",
+        "state_type": "str",
+        "override_payload": false,
+        "override_data": true,
+        "x": 911.3333206176758,
+        "y": 2015.6666402816772,
+        "wires": [
+            [
+                "8e6f21a6.f7d23"
+            ],
+            [
+                "cb2e199.580d2e8"
+            ]
+        ]
+    },
+    {
+        "id": "8e6f21a6.f7d23",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_play_pause",
+        "data": "{\"entity_id\":\"media_player.tv\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1255.3333740234375,
+        "y": 1971.6666412353516,
+        "wires": [
+            []
         ]
     }
 ]
