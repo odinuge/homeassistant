@@ -48,8 +48,7 @@
         "y": 726.0000305175781,
         "wires": [
             [
-                "775fe3c5.1dd85c",
-                "db971cd.65901e"
+                "775fe3c5.1dd85c"
             ]
         ]
     },
@@ -88,7 +87,7 @@
             },
             {
                 "t": "eq",
-                "v": "3003",
+                "v": "3001",
                 "vt": "str"
             }
         ],
@@ -156,8 +155,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 411.20001220703125,
-        "y": 860.4000549316406,
+        "x": 419.20001220703125,
+        "y": 866.3999938964844,
         "wires": [
             []
         ]
@@ -257,7 +256,7 @@
         "override_topic": true,
         "override_payload": true,
         "override_data": true,
-        "entity_id": "media_player.music_surround",
+        "entity_id": "media_player.googlehome5130",
         "state_type": "str",
         "outputs": 2,
         "x": 834,
@@ -329,7 +328,7 @@
         "override_topic": true,
         "override_payload": true,
         "override_data": true,
-        "entity_id": "media_player.music_surround",
+        "entity_id": "media_player.googlehome5130",
         "state_type": "str",
         "outputs": 2,
         "x": 834.5,
@@ -426,7 +425,7 @@
         "type": "function",
         "z": "2b16d656.3b7442",
         "name": "",
-        "func": "msg.payload.entity_id=\"media_player.music_surround\"\nreturn msg;",
+        "func": "msg.payload.entity_id=\"media_player.googlehome5130\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 639.5,
@@ -449,7 +448,7 @@
         "override_topic": true,
         "override_payload": true,
         "override_data": true,
-        "entity_id": "media_player.music_surround",
+        "entity_id": "media_player.googlehome5130",
         "state_type": "str",
         "outputs": 2,
         "x": 372.5,
@@ -515,12 +514,12 @@
             },
             {
                 "t": "eq",
-                "v": "4003",
+                "v": "4001",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "5003",
+                "v": "5001",
                 "vt": "str"
             }
         ],
@@ -766,7 +765,7 @@
         "type": "function",
         "z": "2b16d656.3b7442",
         "name": "Brightness up calc",
-        "func": "brightness = msg.data.attributes.brightness + 40;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "func": "brightness = msg.data.attributes.brightness + 50;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 951,
@@ -825,7 +824,7 @@
         "type": "function",
         "z": "2b16d656.3b7442",
         "name": "Brightness down calc",
-        "func": "brightness = msg.data.attributes.brightness-40;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "func": "brightness = msg.data.attributes.brightness-50;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 962,
@@ -3107,7 +3106,7 @@
         "type": "function",
         "z": "2b16d656.3b7442",
         "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.music_surround\"};\nreturn msg;",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.googlehome5130\"};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1102.88330078125,
@@ -3142,7 +3141,7 @@
         "type": "function",
         "z": "2b16d656.3b7442",
         "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.music_surround\"};\nreturn msg;",
+        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.googlehome5130\"};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1091.88330078125,
@@ -3186,20 +3185,6 @@
         ]
     },
     {
-        "id": "db971cd.65901e",
-        "type": "debug",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 306.76666259765625,
-        "y": 1464.933349609375,
-        "wires": []
-    },
-    {
         "id": "8b578f9d.d7a99",
         "type": "function",
         "z": "2b16d656.3b7442",
@@ -3222,11 +3207,11 @@
         "name": "",
         "server": "5d298046.09a7b",
         "event_type": "call_service",
-        "x": 108.76666259765625,
-        "y": 366,
+        "x": 103.76666259765625,
+        "y": 368,
         "wires": [
             [
-                "5f406fe7.bcb48"
+                "c76b40a1.5dfdf8"
             ]
         ]
     },
@@ -3262,8 +3247,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 292.76666259765625,
-        "y": 366.9499816894531,
+        "x": 824.7666015625,
+        "y": 371.9499816894531,
         "wires": [
             [
                 "e6210b0.82c1178"
@@ -3292,8 +3277,8 @@
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
-        "x": 648.88330078125,
-        "y": 338.8833312988281,
+        "x": 1001.88330078125,
+        "y": 328.8833312988281,
         "wires": [
             [
                 "cfbb411a.9fc75"
@@ -3313,8 +3298,8 @@
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
-        "x": 1000.88330078125,
-        "y": 337.8833312988281,
+        "x": 1352.88330078125,
+        "y": 325.8833312988281,
         "wires": [
             []
         ]
@@ -3334,8 +3319,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 833.38330078125,
-        "y": 338.48333740234375,
+        "x": 1185.38330078125,
+        "y": 328.48333740234375,
         "wires": [
             [
                 "e0c6dae5.12b278"
@@ -3355,8 +3340,8 @@
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
-        "x": 652.88330078125,
-        "y": 391.48333740234375,
+        "x": 1362.88330078125,
+        "y": 375.48333740234375,
         "wires": [
             []
         ]
@@ -3374,8 +3359,8 @@
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
-        "x": 653.88330078125,
-        "y": 438.8833312988281,
+        "x": 1365.88330078125,
+        "y": 420.8833312988281,
         "wires": [
             []
         ]
@@ -3393,8 +3378,8 @@
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
-        "x": 641.88330078125,
-        "y": 487.8833312988281,
+        "x": 1355.88330078125,
+        "y": 468.8833312988281,
         "wires": [
             []
         ]
@@ -3416,6 +3401,78 @@
         "y": 184.88333129882812,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "136b1c38.33dee4",
+        "type": "api-current-state",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "override_payload": false,
+        "override_data": true,
+        "entity_id": "light.sofa",
+        "state_type": "str",
+        "outputs": 2,
+        "x": 438.7666320800781,
+        "y": 367.3999328613281,
+        "wires": [
+            [
+                "346a99ce.0c6a56"
+            ],
+            [
+                "5f406fe7.bcb48"
+            ]
+        ]
+    },
+    {
+        "id": "c76b40a1.5dfdf8",
+        "type": "switch",
+        "z": "2b16d656.3b7442",
+        "name": "",
+        "property": "payload.event.service_data.entity_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "scene",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 263.8833312988281,
+        "y": 366.8833312988281,
+        "wires": [
+            [
+                "136b1c38.33dee4"
+            ]
+        ]
+    },
+    {
+        "id": "346a99ce.0c6a56",
+        "type": "api-call-service",
+        "z": "2b16d656.3b7442",
+        "name": "Activate warm",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 648.88330078125,
+        "y": 316.8833312988281,
+        "wires": [
+            [
+                "5f406fe7.bcb48"
+            ]
         ]
     }
 ]
