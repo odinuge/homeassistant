@@ -19,6 +19,8 @@ introduction:
 # Enables the frontend
 frontend:
 
+system_health:
+
 logger:
   default: warning
   logs:
@@ -28,8 +30,6 @@ logger:
 config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -58,10 +58,7 @@ map:
 # Track the sun
 sun:
 
-# Sensors
-sensor:
-  # Weather prediction
-  - platform: yr
+
 
 # Text to speech
 tts:
@@ -124,16 +121,13 @@ scene:
     entities:
       input_boolean.fake:
         state: off
-        
-light:
-  - platform: flux_led
-    automatic_add: true
+
 
 device_tracker:
   - platform: nmap_tracker
     hosts: !secret device_tracker_ip
-    consider_home: 0:15:00
-    interval_seconds: 30
+    consider_home: 0:30:00
+    interval_seconds: 45
     new_device_defaults:
       track_new_devices: false
 
@@ -176,6 +170,7 @@ counter:
     step: 1
     
 sensor:
+  - platform: yr
   - platform: template
     sensors:
       since_watered:

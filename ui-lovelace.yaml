@@ -175,6 +175,11 @@ views:
               icon: mdi:television
               hide_power: false
               group: true
+            - entity: media_player.samsung_tv
+              type: custom:mini-media-player
+              name: Samsung TV
+              icon: mdi:television
+              group: true
             - type: divider
               style:
                 margin-top: 40px
