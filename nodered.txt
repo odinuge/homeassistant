@@ -3584,7 +3584,7 @@
         "type": "function",
         "z": "4adf2b12.26e9d4",
         "name": "Prev color calc",
-        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"peachpuff\")\n    current_color = \"peachpuff\"\n}\n\nmsg.data = {\"color_name\": current_color}\n\nreturn msg;",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"peachpuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"white\")\n    current_color = \"white\"\n}\n\nmsg.data = {data:{\"color_name\": current_color}}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 483.42870330810547,
@@ -3613,29 +3613,13 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 537.4286804199219,
-        "y": 391.68818378448486,
+        "x": 539.4286651611328,
+        "y": 388.68819427490234,
         "wires": [
             [
-                "6324078b.e32fc8"
+                "5ef6602f.4f81d"
             ],
             []
-        ]
-    },
-    {
-        "id": "6324078b.e32fc8",
-        "type": "function",
-        "z": "4adf2b12.26e9d4",
-        "name": "Brightness up calc",
-        "func": "brightness = msg.data.attributes.brightness + 50;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 775.4286842346191,
-        "y": 384.6881351470947,
-        "wires": [
-            [
-                "3556c8f0.21dbb8"
-            ]
         ]
     },
     {
@@ -3651,26 +3635,10 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1007.4286422729492,
-        "y": 373.6881351470947,
+        "x": 1359.4287605285645,
+        "y": 358.6882209777832,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "ec52b0f6.56821",
-        "type": "function",
-        "z": "4adf2b12.26e9d4",
-        "name": "Brightness down calc",
-        "func": "brightness = msg.data.attributes.brightness-50;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 793.4286041259766,
-        "y": 645.6881427764893,
-        "wires": [
-            [
-                "8dfa82b3.e5925"
-            ]
         ]
     },
     {
@@ -4196,7 +4164,7 @@
         "y": 425.39999294281006,
         "wires": [
             [
-                "d18f0fa5.24124"
+                "5ef6602f.4f81d"
             ],
             []
         ]
@@ -4206,14 +4174,15 @@
         "type": "function",
         "z": "4adf2b12.26e9d4",
         "name": "Brightness up calc",
-        "func": "brightness = msg.data.attributes.brightness + 50;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "func": "arr = msg.data.attributes.brightness\nvar sum = 0;\nfor( var i = 0; i < arr.length; i++ ){\n    sum += parseInt( arr[i], 10 ); //don't forget to add the base\n}\n\nvar brightness = sum/arr.length + 50;\n\n\nif (brightness > 255){\n    brightness = 255;\n}\nmsg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 775.2000122070312,
-        "y": 419.3999938964844,
+        "x": 922.2000732421875,
+        "y": 397.3999996185303,
         "wires": [
             [
-                "4b2c9bd7.a78834"
+                "38ad86d2.82161a",
+                "a3ccc652.33eae8"
             ]
         ]
     },
@@ -4230,8 +4199,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1011.2000122070312,
-        "y": 416.3999938964844,
+        "x": 1361.2001342773438,
+        "y": 396.4000005722046,
         "wires": [
             []
         ]
@@ -4257,7 +4226,7 @@
         "y": 648.2000122070312,
         "wires": [
             [
-                "ec52b0f6.56821"
+                "5577765a.a08848"
             ],
             []
         ]
@@ -4283,25 +4252,9 @@
         "y": 681.9118213653564,
         "wires": [
             [
-                "6b1c6308.90a89c"
+                "5577765a.a08848"
             ],
             []
-        ]
-    },
-    {
-        "id": "6b1c6308.90a89c",
-        "type": "function",
-        "z": "4adf2b12.26e9d4",
-        "name": "Brightness down calc",
-        "func": "brightness = msg.data.attributes.brightness-50;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 795.2000122070312,
-        "y": 684.2000122070312,
-        "wires": [
-            [
-                "5e189f72.9e028"
-            ]
         ]
     },
     {
@@ -4317,8 +4270,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1056.199951171875,
-        "y": 640.2000122070312,
+        "x": 1374.200080871582,
+        "y": 650.2001209259033,
         "wires": [
             []
         ]
@@ -4336,8 +4289,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1059.971321105957,
-        "y": 682.9118709564209,
+        "x": 1377.971450805664,
+        "y": 692.911979675293,
         "wires": [
             []
         ]
@@ -4358,12 +4311,12 @@
         "state_location": "payload",
         "override_payload": "msg",
         "entity_location": "",
-        "override_data": "msg",
+        "override_data": "none",
         "x": 702.1999740600586,
         "y": 551.2000255584717,
         "wires": [
             [
-                "663108e5.424e08"
+                "db1c2290.bd70d"
             ],
             []
         ]
@@ -4383,13 +4336,13 @@
         "state_type": "str",
         "state_location": "payload",
         "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
+        "entity_location": "",
+        "override_data": "none",
         "x": 702.9714050292969,
         "y": 585.9118423461914,
         "wires": [
             [
-                "64eb8da.edb3774"
+                "d383166b.d69088"
             ],
             []
         ]
@@ -4399,7 +4352,7 @@
         "type": "function",
         "z": "4adf2b12.26e9d4",
         "name": "Next color calc",
-        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)-1\n    if (i <= 0) {\n        i = colors.length-1\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"peachpuff\")\n    current_color = \"peachpuff\"\n}\n\nmsg.data = {\"color_name\": current_color}\n\nreturn msg;",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"peachpuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)-1\n    if (i <= 0) {\n        i = colors.length-1\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"purple\")\n    current_color = \"purple\"\n}\n\nmsg.data = {\"color_name\": current_color}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 480.2000198364258,
@@ -4424,8 +4377,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1038.199966430664,
-        "y": 537.799994468689,
+        "x": 1123.2000274658203,
+        "y": 534.7999582290649,
         "wires": [
             []
         ]
@@ -4443,8 +4396,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1041.971336364746,
-        "y": 580.5118532180786,
+        "x": 1128.9714050292969,
+        "y": 578.5118179321289,
         "wires": [
             []
         ]
@@ -4462,15 +4415,15 @@
         "override_topic": false,
         "entity_id": "light.light_2",
         "state_type": "str",
-        "state_location": "payload",
-        "override_payload": "msg",
+        "state_location": "",
+        "override_payload": "none",
         "entity_location": "",
-        "override_data": "msg",
+        "override_data": "none",
         "x": 699.2000122070312,
         "y": 469.79998779296875,
         "wires": [
             [
-                "8a8f90de.46781"
+                "66c93a1e.117744"
             ],
             []
         ]
@@ -4490,13 +4443,13 @@
         "state_type": "str",
         "state_location": "payload",
         "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
+        "entity_location": "",
+        "override_data": "none",
         "x": 699.9714431762695,
         "y": 504.5118045806885,
         "wires": [
             [
-                "6c0120f2.03247"
+                "3d4a4e31.bbfed2"
             ],
             []
         ]
@@ -4514,8 +4467,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1035.2000045776367,
-        "y": 456.39995670318604,
+        "x": 1122.2000274658203,
+        "y": 457.39994621276855,
         "wires": [
             []
         ]
@@ -4533,8 +4486,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1038.9713745117188,
-        "y": 499.1118154525757,
+        "x": 1121.9714050292969,
+        "y": 495.11180686950684,
         "wires": [
             []
         ]
@@ -4604,7 +4557,9 @@
         "x": 811.1000595092773,
         "y": 786.7999992370605,
         "wires": [
-            []
+            [
+                "a5e96614.391af8"
+            ]
         ]
     },
     {
@@ -4894,6 +4849,261 @@
             [
                 "7ae475cf.879e1c"
             ]
+        ]
+    },
+    {
+        "id": "66c93a1e.117744",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Attach color",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n}\nelse {\n    current_color = \"peachpuff\"\n}\n\nmsg.payload = {data:{\"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 917.3333206176758,
+        "y": 465.55554580688477,
+        "wires": [
+            [
+                "8a8f90de.46781"
+            ]
+        ]
+    },
+    {
+        "id": "3d4a4e31.bbfed2",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Attach color",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n}\nelse {\n    current_color = \"peachpuff\"\n}\n\nmsg.payload = {data:{\"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 914.3333129882812,
+        "y": 499.5555419921875,
+        "wires": [
+            [
+                "6c0120f2.03247"
+            ]
+        ]
+    },
+    {
+        "id": "db1c2290.bd70d",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Attach color",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n}\nelse {\n    current_color = \"peachpuff\"\n}\n\nmsg.payload = {data:{\"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 917.3333129882812,
+        "y": 554.5555419921875,
+        "wires": [
+            [
+                "663108e5.424e08"
+            ]
+        ]
+    },
+    {
+        "id": "d383166b.d69088",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Attach color",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n}\nelse {\n    current_color = \"peachpuff\"\n}\n\nmsg.payload = {data:{\"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 912.3333129882812,
+        "y": 589.5555419921875,
+        "wires": [
+            [
+                "64eb8da.edb3774"
+            ]
+        ]
+    },
+    {
+        "id": "a5e96614.391af8",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset color",
+        "func": "flow.set(\"current_color\",\"peachpuff\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1018.3333129882812,
+        "y": 785.5555419921875,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ef6602f.4f81d",
+        "type": "join",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "data.attributes.brightness",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "-",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": ".2",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 726.4999847412109,
+        "y": 401.11112785339355,
+        "wires": [
+            [
+                "d18f0fa5.24124"
+            ]
+        ]
+    },
+    {
+        "id": "38ad86d2.82161a",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 1140.3333740234375,
+        "y": 362.44445991516113,
+        "wires": [
+            [
+                "3556c8f0.21dbb8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a3ccc652.33eae8",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 1140.3333740234375,
+        "y": 399.4444580078125,
+        "wires": [
+            [
+                "4b2c9bd7.a78834"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5577765a.a08848",
+        "type": "join",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "data.attributes.brightness",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "-",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": ".2",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 756.111083984375,
+        "y": 669.888916015625,
+        "wires": [
+            [
+                "eba0dbdf.cf0168"
+            ]
+        ]
+    },
+    {
+        "id": "eba0dbdf.cf0168",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Brightness up calc",
+        "func": "arr = msg.data.attributes.brightness\nvar sum = 0;\nfor( var i = 0; i < arr.length; i++ ){\n    sum += parseInt( arr[i], 10 ); //don't forget to add the base\n}\n\nvar brightness = sum/arr.length - 50;\n\n\nif (brightness < 2){\n    brightness = 2;\n}\nmsg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 926.111083984375,
+        "y": 672.888916015625,
+        "wires": [
+            [
+                "7a040ef2.07df",
+                "f0f1956d.172898"
+            ]
+        ]
+    },
+    {
+        "id": "7a040ef2.07df",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 1139.111083984375,
+        "y": 661.888916015625,
+        "wires": [
+            [
+                "8dfa82b3.e5925"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f0f1956d.172898",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 1140.8824157714844,
+        "y": 695.6007251739502,
+        "wires": [
+            [
+                "5e189f72.9e028"
+            ],
+            []
         ]
     }
 ]
