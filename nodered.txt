@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "4adf2b12.26e9d4",
+        "type": "tab",
+        "label": "Ikea remotes",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "f93c10c0.1dd628",
         "type": "tab",
         "label": "Automation 2.0",
@@ -475,419 +482,6 @@
         "output_location_type": "msg",
         "x": 918,
         "y": 1115.4000549316406,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "24d7b6e9.66e6ba",
-        "type": "switch",
-        "z": "2b16d656.3b7442",
-        "name": "Lights",
-        "property": "payload.event.event",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "2002",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "4002",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "5002",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "3002",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "1002",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "4001",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "5001",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 7,
-        "x": 102.00003051757812,
-        "y": 1356,
-        "wires": [
-            [
-                "113e5d49.fc35eb"
-            ],
-            [
-                "23691ed.ffd9462"
-            ],
-            [
-                "1adddc32.d8a03c"
-            ],
-            [
-                "c7b5186.2f4aee8"
-            ],
-            [
-                "3784ea38.f1120e"
-            ],
-            [
-                "4f6a60a5.fb395"
-            ],
-            [
-                "a1e40c8a.5265e"
-            ]
-        ]
-    },
-    {
-        "id": "3784ea38.f1120e",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "toggle",
-        "data": "{\"entity_id\":\"light.bed\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 739,
-        "y": 1376,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a1e40c8a.5265e",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "light.light_1",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 717,
-        "y": 1465,
-        "wires": [
-            [
-                "4e109e6d.ad7208"
-            ],
-            [
-                "ef5a868b.bc8"
-            ]
-        ]
-    },
-    {
-        "id": "4e109e6d.ad7208",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_off",
-        "data": "{\"entity_id\":\"light.light_1\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1042,
-        "y": 1421,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ef5a868b.bc8",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_on",
-        "data": "{\"entity_id\":\"light.light_1\",\"brightness\":190}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1042,
-        "y": 1470,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4f6a60a5.fb395",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "switch",
-        "service": "toggle",
-        "data": "{\"entity_id\":\"switch.light_4\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 751,
-        "y": 1422,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1adddc32.d8a03c",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "light.bed",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 701,
-        "y": 1282,
-        "wires": [
-            [
-                "fcbd2083.acf058"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "fcbd2083.acf058",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "Prev color calc",
-        "func": "colors = [\"white\",\"PeachPuff\",\"red\",\"orange\",\"green\",\"blue\",\"purple\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"warm\")\n    current_color = \"warm\"\n}\n\nmsg.payload = {\"data\":{\"color_name\": current_color}}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 946,
-        "y": 1285,
-        "wires": [
-            [
-                "3a7fb5bf.1e98ea",
-                "c4a413e6.6254e"
-            ]
-        ]
-    },
-    {
-        "id": "23691ed.ffd9462",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "light.bed",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 702,
-        "y": 1244,
-        "wires": [
-            [
-                "2e89754c.49eac2"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "2e89754c.49eac2",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "Next color calc",
-        "func": "colors = [\"white\",\"PeachPuff\",\"red\",\"orange\",\"green\",\"blue\",\"purple\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)-1\n    if (i <= 0) {\n        i = colors.length-1\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"warm\")\n    current_color = \"warm\"\n}\n\nmsg.payload = {\"data\":{\"color_name\": current_color}}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 946,
-        "y": 1241,
-        "wires": [
-            [
-                "3a7fb5bf.1e98ea",
-                "c4a413e6.6254e"
-            ]
-        ]
-    },
-    {
-        "id": "113e5d49.fc35eb",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "light.bed",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 697,
-        "y": 1201,
-        "wires": [
-            [
-                "79342579.46ce7c"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "79342579.46ce7c",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "Brightness up calc",
-        "func": "brightness = msg.data.attributes.brightness + 50;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 951,
-        "y": 1192,
-        "wires": [
-            [
-                "c98e55fe.caa5c8"
-            ]
-        ]
-    },
-    {
-        "id": "c98e55fe.caa5c8",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_on",
-        "data": "{\"entity_id\":\"light.bed\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1170,
-        "y": 1169,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c7b5186.2f4aee8",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "light.bed",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 704,
-        "y": 1330,
-        "wires": [
-            [
-                "41906f08.50c288"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "41906f08.50c288",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "Brightness down calc",
-        "func": "brightness = msg.data.attributes.brightness-50;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 962,
-        "y": 1330,
-        "wires": [
-            [
-                "ef174ace.39a23"
-            ]
-        ]
-    },
-    {
-        "id": "ef174ace.39a23",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_on",
-        "data": "{\"entity_id\":\"light.bed\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1182,
-        "y": 1312,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3a7fb5bf.1e98ea",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_on",
-        "data": "{\"entity_id\":\"light.light_3\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1214,
-        "y": 1274,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c4a413e6.6254e",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "light",
-        "service": "turn_on",
-        "data": "{\"entity_id\":\"light.light_2\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1199,
-        "y": 1216,
         "wires": [
             []
         ]
@@ -2255,12 +1849,8 @@
         "x": 82.76666259765625,
         "y": 799.1499328613281,
         "wires": [
-            [
-                "24d7b6e9.66e6ba"
-            ],
-            [
-                "24d7b6e9.66e6ba"
-            ],
+            [],
+            [],
             [
                 "83701ba8.310a6"
             ],
@@ -2831,8 +2421,10 @@
         "override_topic": true,
         "entity_id": "light.bath",
         "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
         "x": 687.7666015625,
         "y": 1539.3999633789062,
         "wires": [
@@ -3875,6 +3467,1433 @@
         "y": 1971.6666412353516,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "fa7f4a64.9b10c8",
+        "type": "server-events",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "event_type": "deconz_event",
+        "x": 105,
+        "y": 473.11669921875,
+        "wires": [
+            [
+                "f3f6dd38.6fb1f"
+            ]
+        ]
+    },
+    {
+        "id": "abde2e96.2d45e",
+        "type": "switch",
+        "z": "4adf2b12.26e9d4",
+        "name": "Bedroom",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4001",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5001",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 251.00002670288086,
+        "y": 624.1167106628418,
+        "wires": [
+            [
+                "21d97741.155cb8",
+                "e239bc0e.38c55"
+            ],
+            [
+                "b4cff1d9.79e0d"
+            ],
+            [
+                "57fb091e.7ee568"
+            ],
+            [
+                "1800cdcc.c166c2",
+                "57beb83c.732c88"
+            ],
+            [
+                "f251c32a.7cf2e",
+                "590024dc.05584c"
+            ],
+            [
+                "1bcdf2ff.72d52d"
+            ],
+            [
+                "9c3945ec.8c7be8"
+            ]
+        ]
+    },
+    {
+        "id": "f251c32a.7cf2e",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "toggle",
+        "data": "{\"entity_id\":\"light.bed\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 542.4286422729492,
+        "y": 717.6882305145264,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4cff1d9.79e0d",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Prev color calc",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"peachpuff\")\n    current_color = \"peachpuff\"\n}\n\nmsg.data = {\"color_name\": current_color}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 483.42870330810547,
+        "y": 486.68817710876465,
+        "wires": [
+            [
+                "7a5e4988.0eb208",
+                "9e39289b.e1a078"
+            ]
+        ]
+    },
+    {
+        "id": "21d97741.155cb8",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 537.4286804199219,
+        "y": 391.68818378448486,
+        "wires": [
+            [
+                "6324078b.e32fc8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6324078b.e32fc8",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Brightness up calc",
+        "func": "brightness = msg.data.attributes.brightness + 50;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 775.4286842346191,
+        "y": 384.6881351470947,
+        "wires": [
+            [
+                "3556c8f0.21dbb8"
+            ]
+        ]
+    },
+    {
+        "id": "3556c8f0.21dbb8",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1007.4286422729492,
+        "y": 373.6881351470947,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec52b0f6.56821",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Brightness down calc",
+        "func": "brightness = msg.data.attributes.brightness-50;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 793.4286041259766,
+        "y": 645.6881427764893,
+        "wires": [
+            [
+                "8dfa82b3.e5925"
+            ]
+        ]
+    },
+    {
+        "id": "f3f6dd38.6fb1f",
+        "type": "switch",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "property": "payload.event.id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "tradfri_remote_control",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "spotify_controller",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 82.76666259765625,
+        "y": 546.2666015625,
+        "wires": [
+            [
+                "abde2e96.2d45e"
+            ],
+            [
+                "4dac1cbf.7b8524"
+            ]
+        ]
+    },
+    {
+        "id": "4dac1cbf.7b8524",
+        "type": "switch",
+        "z": "4adf2b12.26e9d4",
+        "name": "Living room",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4001",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5001",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 149.28569793701172,
+        "y": 1192.6572723388672,
+        "wires": [
+            [
+                "25d446d8.0dd15a"
+            ],
+            [
+                "12c6ffeb.8c634"
+            ],
+            [
+                "e2414a88.d89618"
+            ],
+            [
+                "e34e8b61.767078"
+            ],
+            [
+                "5e23ab73.4bce24"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5e23ab73.4bce24",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.light_1",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 412.3857765197754,
+        "y": 1333.4573011398315,
+        "wires": [
+            [
+                "1a448092.eb12af"
+            ],
+            [
+                "4e5f1c38.1f7d54"
+            ]
+        ]
+    },
+    {
+        "id": "1a448092.eb12af",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.sofa",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 648.3858413696289,
+        "y": 1327.457363128662,
+        "wires": [
+            [
+                "db31e0d4.50dc6"
+            ],
+            [
+                "4e5f1c38.1f7d54"
+            ]
+        ]
+    },
+    {
+        "id": "db31e0d4.50dc6",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.light_4",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 903.3858451843262,
+        "y": 1326.457363128662,
+        "wires": [
+            [
+                "c16a3c9.66350c",
+                "3fb2e161.6ee34e",
+                "8344675.1dbea98"
+            ],
+            [
+                "4e5f1c38.1f7d54"
+            ]
+        ]
+    },
+    {
+        "id": "3fb2e161.6ee34e",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1181.7858848571777,
+        "y": 1357.4572315216064,
+        "wires": [
+            [
+                "6aa054d3.75cf1c"
+            ]
+        ]
+    },
+    {
+        "id": "7ae475cf.879e1c",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.light_1, light.sofa\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1444.6856384277344,
+        "y": 1503.4573001861572,
+        "wires": [
+            [
+                "467c6df6.fe3d14"
+            ]
+        ]
+    },
+    {
+        "id": "6aa054d3.75cf1c",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"brightness\":0,\"white_value\":255,\"rgb_color\":[255,255,255]}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1387.1855163574219,
+        "y": 1353.2574696540833,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "12c6ffeb.8c634",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "toggle",
+        "data": "{\"entity_id\":\"switch.light_4\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1142.8857688903809,
+        "y": 1161.457299232483,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2414a88.d89618",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_1",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 922.8858451843262,
+        "y": 1228.057300567627,
+        "wires": [
+            [
+                "b86ef277.f9c93"
+            ],
+            [
+                "ce5100e.f1a5b"
+            ]
+        ]
+    },
+    {
+        "id": "b86ef277.f9c93",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.light_1\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1145.2857780456543,
+        "y": 1200.2572860717773,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce5100e.f1a5b",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_1\",\"brightness\":190}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1145.2857780456543,
+        "y": 1249.2572860717773,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25d446d8.0dd15a",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.sofa",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 713.6857795715332,
+        "y": 1106.657299041748,
+        "wires": [
+            [
+                "be11d5e6.cfc9b8"
+            ],
+            [
+                "6f4e4ad0.e30e94"
+            ]
+        ]
+    },
+    {
+        "id": "be11d5e6.cfc9b8",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 943.0857734680176,
+        "y": 1082.2572984695435,
+        "wires": [
+            [
+                "3a401773.b3a6b8"
+            ]
+        ]
+    },
+    {
+        "id": "3d27706e.36474",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1142.2025413513184,
+        "y": 1122.6072017550468,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3a401773.b3a6b8",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\",\"brightness\":50,\"rgb_color\":[255,255,255],\"white_value\":255}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1135.2025413513184,
+        "y": 1085.6073961257935,
+        "wires": [
+            [
+                "bda45052.67213"
+            ]
+        ]
+    },
+    {
+        "id": "6f4e4ad0.e30e94",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Next color calc",
+        "func": "colors = [\"BlueViolet\",\"red\",\"purple\",\"blue\",\"green\",\"cyan\", \"warm\"]\ncurrent_color = flow.get(\"current_color_bath\") || false\n\n\nif (current_color) {\n    if (current_color == \"cyan\") {\n        msg.payload = {\"data\": {\"brightness\":100,\"rgb_color\":[255,255,255],\"white_value\":255}}\n        flow.set(\"current_color_bath\",\"warm\")\n        return msg\n    }\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color_bath\",current_color)\n}\nelse {\n    flow.set(\"current_color_bath\",\"red\")\n    current_color = \"red\"\n}\n\nmsg.payload = {\"data\": {\"brightness\":255, \"white_value\":0, \"color_name\": current_color}}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 954.2024726867676,
+        "y": 1122.007396697998,
+        "wires": [
+            [
+                "3d27706e.36474"
+            ]
+        ]
+    },
+    {
+        "id": "e34e8b61.767078",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.sofa\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1160.1857566833496,
+        "y": 1282.2572860717773,
+        "wires": [
+            [
+                "febbd782.365528"
+            ]
+        ]
+    },
+    {
+        "id": "467c6df6.fe3d14",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset curr color",
+        "func": "flow.set(\"current_color_bath\",\"warm\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1656.8858108520508,
+        "y": 1497.857473373413,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bda45052.67213",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset curr color",
+        "func": "flow.set(\"current_color_bath\",\"warm\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1336.8857727050781,
+        "y": 1085.8572750091553,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "febbd782.365528",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset curr color",
+        "func": "flow.set(\"current_color_bath\",\"warm\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1353.4857292175293,
+        "y": 1273.2572860717773,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e239bc0e.38c55",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 539.2000122070312,
+        "y": 425.39999294281006,
+        "wires": [
+            [
+                "d18f0fa5.24124"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d18f0fa5.24124",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Brightness up calc",
+        "func": "brightness = msg.data.attributes.brightness + 50;\n    if (brightness > 255){\n        brightness = 255;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 775.2000122070312,
+        "y": 419.3999938964844,
+        "wires": [
+            [
+                "4b2c9bd7.a78834"
+            ]
+        ]
+    },
+    {
+        "id": "4b2c9bd7.a78834",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_3\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1011.2000122070312,
+        "y": 416.3999938964844,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1800cdcc.c166c2",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 550.2000122070312,
+        "y": 648.2000122070312,
+        "wires": [
+            [
+                "ec52b0f6.56821"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "57beb83c.732c88",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 551.9713439941406,
+        "y": 681.9118213653564,
+        "wires": [
+            [
+                "6b1c6308.90a89c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6b1c6308.90a89c",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Brightness down calc",
+        "func": "brightness = msg.data.attributes.brightness-50;\n    if (brightness < 0){\n        brightness = 2;\n    }\n    msg.payload = {\"data\":{\"brightness\":brightness}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 795.2000122070312,
+        "y": 684.2000122070312,
+        "wires": [
+            [
+                "5e189f72.9e028"
+            ]
+        ]
+    },
+    {
+        "id": "8dfa82b3.e5925",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1056.199951171875,
+        "y": 640.2000122070312,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e189f72.9e028",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_3\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1059.971321105957,
+        "y": 682.9118709564209,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aafeed9.881601",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "",
+        "override_data": "msg",
+        "x": 702.1999740600586,
+        "y": 551.2000255584717,
+        "wires": [
+            [
+                "663108e5.424e08"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "81af121d.ec1f",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 702.9714050292969,
+        "y": 585.9118423461914,
+        "wires": [
+            [
+                "64eb8da.edb3774"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "57fb091e.7ee568",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Next color calc",
+        "func": "colors = [\"white\",\"red\",\"orange\",\"green\",\"blue\",\"purple\",\"PeachPuff\"]\ncurrent_color = flow.get(\"current_color\") || false\n\nif (current_color) {\n    i = colors.indexOf(current_color)-1\n    if (i <= 0) {\n        i = colors.length-1\n    }\n    current_color = colors[i]\n    flow.set(\"current_color\",current_color)\n}\nelse {\n    flow.set(\"current_color\",\"peachpuff\")\n    current_color = \"peachpuff\"\n}\n\nmsg.data = {\"color_name\": current_color}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480.2000198364258,
+        "y": 545.1999950408936,
+        "wires": [
+            [
+                "aafeed9.881601",
+                "81af121d.ec1f"
+            ]
+        ]
+    },
+    {
+        "id": "663108e5.424e08",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1038.199966430664,
+        "y": 537.799994468689,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64eb8da.edb3774",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_3\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1041.971336364746,
+        "y": 580.5118532180786,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a5e4988.0eb208",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "",
+        "override_data": "msg",
+        "x": 699.2000122070312,
+        "y": 469.79998779296875,
+        "wires": [
+            [
+                "8a8f90de.46781"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9e39289b.e1a078",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 699.9714431762695,
+        "y": 504.5118045806885,
+        "wires": [
+            [
+                "6c0120f2.03247"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8a8f90de.46781",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1035.2000045776367,
+        "y": 456.39995670318604,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c0120f2.03247",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_3\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1038.9713745117188,
+        "y": 499.1118154525757,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "590024dc.05584c",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.bed",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 555.6999816894531,
+        "y": 769.799998998642,
+        "wires": [
+            [
+                "b684841a.c1bd88"
+            ],
+            [
+                "f81f7725.c08238"
+            ]
+        ]
+    },
+    {
+        "id": "b684841a.c1bd88",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.bed\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 810.1000366210938,
+        "y": 749.7999877929688,
+        "wires": [
+            [
+                "eafa2574.6e48c8"
+            ]
+        ]
+    },
+    {
+        "id": "f81f7725.c08238",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.bed\",\"color_name\":\"peachpuff\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 811.1000595092773,
+        "y": 786.7999992370605,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eafa2574.6e48c8",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset color",
+        "func": "flow.set(\"current_color\",\"peachpuff\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1014,
+        "y": 747.7999877929688,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1bcdf2ff.72d52d",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 499.2000274658203,
+        "y": 858.8000011444092,
+        "wires": [
+            [
+                "8145d3e7.6adaa"
+            ],
+            [
+                "132a22d3.6e2d1d"
+            ]
+        ]
+    },
+    {
+        "id": "9c3945ec.8c7be8",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 492.2000274658203,
+        "y": 950.8000011444092,
+        "wires": [
+            [
+                "72db303a.9c439"
+            ],
+            [
+                "125fc080.8bf9f"
+            ]
+        ]
+    },
+    {
+        "id": "132a22d3.6e2d1d",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\",\"color_name\":\"peachpuff\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 721.4444580078125,
+        "y": 881.555643081665,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "125fc080.8bf9f",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\",\"color_name\":\"peachpuff\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 724.444465637207,
+        "y": 959.5555896759033,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8145d3e7.6adaa",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.light_2\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 720.4444580078125,
+        "y": 845.888916015625,
+        "wires": [
+            [
+                "7a559249.97c9cc"
+            ]
+        ]
+    },
+    {
+        "id": "7a559249.97c9cc",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 956.6111297607422,
+        "y": 843.4444580078125,
+        "wires": [
+            [
+                "a47da1a2.67bc1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "440351ef.4be8c",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 962.4444580078125,
+        "y": 938.888916015625,
+        "wires": [
+            [
+                "6546cc87.1d4cf4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "72db303a.9c439",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.light_3\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 722.4444580078125,
+        "y": 920.888916015625,
+        "wires": [
+            [
+                "440351ef.4be8c"
+            ]
+        ]
+    },
+    {
+        "id": "a47da1a2.67bc1",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset color",
+        "func": "flow.set(\"current_color\",\"peachpuff\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1177.4444580078125,
+        "y": 835.888916015625,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6546cc87.1d4cf4",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset color",
+        "func": "flow.set(\"current_color\",\"peachpuff\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1181.4444580078125,
+        "y": 937.888916015625,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c16a3c9.66350c",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.light_4\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1175.666633605957,
+        "y": 1321.3333168029785,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8344675.1dbea98",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_1\",\"brightness\":190}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1198.666618347168,
+        "y": 1394.4444961547852,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e5f1c38.1f7d54",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.light_4\"}",
+        "render_data": false,
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1198.111198425293,
+        "y": 1501.4444961547852,
+        "wires": [
+            [
+                "7ae475cf.879e1c"
+            ]
         ]
     }
 ]
