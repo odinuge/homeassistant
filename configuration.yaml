@@ -13,11 +13,6 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-http:
-  base_url: https://onsager.duckdns.org
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
-  server_host: ::0
 
 # Enables the frontend
 frontend:
