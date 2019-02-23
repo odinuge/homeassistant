@@ -1,0 +1,187 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Oslo
+  # Customization file
+  customize: !include customize.yaml
+
+
+# Enables the frontend
+frontend:
+
+system_health:
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.media_player.spotify: info
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+
+
+# Text to speech
+tts:
+  - platform: google
+
+lovelace:
+  mode: yaml
+
+# Cloud
+cloud:
+  google_actions:
+    filter:
+      exclude_domains:
+        - media_player
+        - group
+        - sensor
+        - counter
+      exclude_entities:
+        - light.Sofa
+        - input_boolean.fake
+        - light.bed
+        - light.living
+        - input_boolean.heater_auto_on
+        - light.Bath
+        - input_boolean.fake
+        - input_boolean.wake_up_light
+
+    entity_config:
+      switch.Heater:
+        name: Heater
+        room: living room
+
+
+group: !include groups.yaml
+
+script: !include scripts.yaml
+
+input_boolean:
+  fake:
+    initial: off
+  heater_auto_on:
+    initial: off
+  wake_up_light:
+    initial: off
+
+scene:
+  - name: Warm
+    entities:
+      input_boolean.fake:
+        state: off
+  - name: Orange
+    entities:
+      input_boolean.fake:
+        state: off
+  - name: Blue
+    entities:
+      input_boolean.fake:
+        state: off
+  - name: Party
+    entities:
+      input_boolean.fake:
+        state: off
+
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts: !secret device_tracker_ip
+    consider_home: 0:30:00
+    interval_seconds: 45
+    new_device_defaults:
+      track_new_devices: false
+
+zone: !include zones.yaml
+
+
+switch:
+  - platform: tplink
+    host: 192.168.1.4
+    name: 'Heater'
+
+light:
+  - platform: flux_led
+    devices:
+      192.168.1.2:
+        name: 'Sofa'
+      192.168.1.19:
+        name: 'Bath'
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret configurator_ip
+  nodered:
+    title: Node-red
+    icon: mdi:wrech
+    url: !secret nodered_ip
+
+media_player:
+  - platform: spotify
+    client_id: !secret spotify_id
+    client_secret: !secret spotify_secret
+  - platform: samsungtv
+    host: 192.168.1.3
+    port: 8002
+
+input_datetime:
+  only_time:
+    name: Time
+    has_date: false
+    has_time: true
+  mailbox:
+    name: Mailbox Sensor
+    has_date: true
+    has_time: true
+
+counter:
+  plant_counter:
+    initial: 0
+    step: 1
+    
+sensor:
+  - platform: yr
+  - platform: template
+    sensors:
+      since_watered:
+        friendly_name: "Days since watered"
+        value_template: "{{ states('counter.plant_counter') }}"
