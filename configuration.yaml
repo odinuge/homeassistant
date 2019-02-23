@@ -13,8 +13,11 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-# Show links to resources in log and frontend
-introduction:
+http:
+  base_url: https://onsager.duckdns.org
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  server_host: ::0
 
 # Enables the frontend
 frontend:
@@ -152,16 +155,27 @@ panel_iframe:
     title: Configurator
     icon: mdi:wrench
     url: !secret configurator_ip
+  nodered:
+    title: Node-red
+    icon: mdi:wrech
+    url: !secret nodered_ip
 
 media_player:
   - platform: spotify
     client_id: !secret spotify_id
     client_secret: !secret spotify_secret
+  - platform: samsungtv
+    host: 192.168.1.3
+    port: 8002
 
 input_datetime:
   only_time:
     name: Time
     has_date: false
+    has_time: true
+  mailbox:
+    name: Mailbox Sensor
+    has_date: true
     has_time: true
 
 counter:
