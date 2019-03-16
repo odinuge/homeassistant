@@ -184,3 +184,4 @@ googlehome:
       track_alarms: true
     - host: 192.168.1.9
       track_alarms: true
+
