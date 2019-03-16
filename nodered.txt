@@ -9,7 +9,7 @@
     {
         "id": "4adf2b12.26e9d4",
         "type": "tab",
-        "label": "Ikea remotes",
+        "label": "Zigbee remotes",
         "disabled": false,
         "info": ""
     },
@@ -35,6 +35,13 @@
         "info": ""
     },
     {
+        "id": "2f1b5793.37aa38",
+        "type": "tab",
+        "label": "Sensor",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "5d298046.09a7b",
         "type": "server",
         "z": "",
@@ -52,438 +59,11 @@
         "server": "5d298046.09a7b",
         "event_type": "deconz_event",
         "x": 105,
-        "y": 726.0000305175781,
+        "y": 594.0000648498535,
         "wires": [
             [
                 "775fe3c5.1dd85c"
             ]
-        ]
-    },
-    {
-        "id": "aef304fc.959538",
-        "type": "switch",
-        "z": "2b16d656.3b7442",
-        "name": "Spotify",
-        "property": "payload.event.event",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "2002",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "4002",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "5002",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "3002",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "1002",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "3001",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 6,
-        "x": 131.49998474121094,
-        "y": 943.2000427246094,
-        "wires": [
-            [
-                "5d739af1.5c3b74",
-                "7e536a87.8ba41c",
-                "fd56afd3.fd9c68"
-            ],
-            [
-                "e59037b1.282278"
-            ],
-            [
-                "16c0f425.0c2d3c"
-            ],
-            [
-                "928875c6.7b1d9",
-                "f59399c1.cc8de",
-                "e0197953.7bf9e"
-            ],
-            [
-                "62c2a512.d1addc"
-            ],
-            [
-                "eb02bb5b.493c4",
-                "21fdc434.eb57d4",
-                "4ee57262.d9ec3c"
-            ]
-        ]
-    },
-    {
-        "id": "16c0f425.0c2d3c",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "media_next_track",
-        "data": "{\"entity_id\":\"media_player.spotify\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 403.5,
-        "y": 905.4000549316406,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e59037b1.282278",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "media_previous_track",
-        "data": "{\"entity_id\":\"media_player.spotify\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 419.20001220703125,
-        "y": 866.3999938964844,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "62c2a512.d1addc",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "media_play_pause",
-        "data": "{\"entity_id\":\"media_player.spotify\"}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 376.20001220703125,
-        "y": 952.4000549316406,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5d739af1.5c3b74",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.home",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 814.5,
-        "y": 748.4000549316406,
-        "wires": [
-            [
-                "4e07c935.b4115"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "711df7a8.19c56",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.kitchen_speaker\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1111.199951171875,
-        "y": 752.5999450683594,
-        "wires": [
-            [
-                "88bee899.8b5298"
-            ]
-        ]
-    },
-    {
-        "id": "7e536a87.8ba41c",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.kitchen_speaker",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 845.2000122070312,
-        "y": 796.4000549316406,
-        "wires": [
-            [
-                "711df7a8.19c56"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "fd56afd3.fd9c68",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.googlehome5130",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 834,
-        "y": 840.4000549316406,
-        "wires": [
-            [
-                "b1f0ba65.97f64"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "928875c6.7b1d9",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.home",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 815,
-        "y": 908.2001037597656,
-        "wires": [
-            [
-                "fa248b04.f16e6"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "f59399c1.cc8de",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.kitchen_speaker",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 845.7000122070312,
-        "y": 956.2001037597656,
-        "wires": [
-            [
-                "8625d4d9.ba4178"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "e0197953.7bf9e",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.googlehome5130",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 834.5,
-        "y": 1000.2001037597656,
-        "wires": [
-            [
-                "672b0a17.28fed4"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "95054f8f.622f",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "msg.payload.entity_id=\"media_player.home\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 628,
-        "y": 1057.4000244140625,
-        "wires": [
-            [
-                "c7674b7.dd0bf38"
-            ]
-        ]
-    },
-    {
-        "id": "eb02bb5b.493c4",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.home",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 353,
-        "y": 1070.2000732421875,
-        "wires": [
-            [
-                "95054f8f.622f"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "3fb3e913.47640e",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "msg.payload.entity_id=\"media_player.kitchen_speaker\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 644.699951171875,
-        "y": 1107.4000244140625,
-        "wires": [
-            [
-                "c7674b7.dd0bf38"
-            ]
-        ]
-    },
-    {
-        "id": "21fdc434.eb57d4",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.kitchen_speaker",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 383.70001220703125,
-        "y": 1118.2000732421875,
-        "wires": [
-            [
-                "3fb3e913.47640e"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "6c28c6e5.f8232",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "msg.payload.entity_id=\"media_player.googlehome5130\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 639.5,
-        "y": 1157.4000244140625,
-        "wires": [
-            [
-                "c7674b7.dd0bf38"
-            ]
-        ]
-    },
-    {
-        "id": "4ee57262.d9ec3c",
-        "type": "api-current-state",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "override_topic": true,
-        "entity_id": "media_player.googlehome5130",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 372.5,
-        "y": 1162.2000732421875,
-        "wires": [
-            [
-                "6c28c6e5.f8232"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "c7674b7.dd0bf38",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "volume_set",
-        "data": "{\"volume_level\":0.1}",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 918,
-        "y": 1115.4000549316406,
-        "wires": [
-            []
         ]
     },
     {
@@ -611,7 +191,6 @@
         "service_domain": "switch",
         "service": "turn_on",
         "data": "{\"entity_id\":\"switch.heater\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -632,7 +211,6 @@
         "service_domain": "switch",
         "service": "turn_off",
         "data": "{\"entity_id\":\"switch.heater\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -971,7 +549,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.bed\",\"color_name\":\"PeachPuff\",\"brightness\":2}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -992,7 +569,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.bed\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -1142,9 +718,10 @@
         "outputinitially": false,
         "state_type": "str",
         "haltifstate": "",
-        "halt_if_type": "",
+        "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 1,
+        "output_only_on_state_change": false,
         "x": 144.49449157714844,
         "y": 187,
         "wires": [
@@ -1338,8 +915,10 @@
         "override_topic": true,
         "entity_id": "input_boolean.heater_auto_on",
         "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
         "x": 323.8833312988281,
         "y": 398.2833557128906,
         "wires": [
@@ -1479,7 +1058,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.bed\",\"color_name\":\"PeachPuff\",\"brightness\":2}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -1500,7 +1078,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.bed\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -1613,8 +1190,7 @@
         "server": "5d298046.09a7b",
         "service_domain": "switch",
         "service": "turn_on",
-        "data": "{\"entity_id\":\"switch.heater\"}",
-        "render_data": false,
+        "data": "{\"entity_id\":\"switch.extra\"}",
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -1637,10 +1213,12 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "entity_id": "switch.heater",
+        "entity_id": "switch.extra",
         "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
         "x": 969.3275146484375,
         "y": 776.3501281738281,
         "wires": [
@@ -1675,10 +1253,12 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "entity_id": "switch.heater",
+        "entity_id": "switch.extra",
         "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
         "x": 994.938720703125,
         "y": 737.6167297363281,
         "wires": [
@@ -1758,8 +1338,7 @@
         "server": "5d298046.09a7b",
         "service_domain": "switch",
         "service": "turn_off",
-        "data": "{\"entity_id\":\"switch.heater\"}",
-        "render_data": false,
+        "data": "{\"entity_id\":\"switch.extra\"}",
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -1782,10 +1361,12 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": true,
-        "entity_id": "switch.heater",
+        "entity_id": "switch.extra",
         "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
         "x": 313.88336181640625,
         "y": 929.4834289550781,
         "wires": [
@@ -1846,8 +1427,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 5,
-        "x": 82.76666259765625,
-        "y": 799.1499328613281,
+        "x": 187.76666259765625,
+        "y": 692.1499519348145,
         "wires": [
             [],
             [],
@@ -1926,7 +1507,7 @@
         "y": 144.88333129882812,
         "wires": [
             [
-                "25f38c2d.6168e4"
+                "2ccff2d5.f274de"
             ],
             []
         ]
@@ -1964,7 +1545,6 @@
         "service_domain": "switch",
         "service": "turn_on",
         "data": "{\"entity_id\":\"switch.light_4\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -2107,7 +1687,6 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"group.all_lights\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -2126,7 +1705,6 @@
         "service_domain": "switch",
         "service": "turn_off",
         "data": "{\"entity_id\":\"switch.light_4\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -2230,30 +1808,6 @@
         ]
     },
     {
-        "id": "243c1f74.80f37",
-        "type": "api-current-state",
-        "z": "a76bf01b.13bf98",
-        "name": "Dobbelsjekk H hjemme",
-        "server": "5d298046.09a7b",
-        "outputs": 2,
-        "halt_if": "home",
-        "halt_if_type": "str",
-        "halt_if_compare": "is_not",
-        "override_topic": true,
-        "entity_id": "device_tracker.henrik_note9",
-        "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
-        "x": 794.8833312988281,
-        "y": 143.88333129882812,
-        "wires": [
-            [
-                "2ccff2d5.f274de"
-            ],
-            []
-        ]
-    },
-    {
         "id": "89b5998.76ff1e8",
         "type": "api-current-state",
         "z": "a76bf01b.13bf98",
@@ -2273,29 +1827,6 @@
         "wires": [
             [],
             []
-        ]
-    },
-    {
-        "id": "25f38c2d.6168e4",
-        "type": "delay",
-        "z": "a76bf01b.13bf98",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "30",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 606.8833312988281,
-        "y": 148.88333129882812,
-        "wires": [
-            [
-                "243c1f74.80f37"
-            ]
         ]
     },
     {
@@ -2397,8 +1928,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 391.8833312988281,
-        "y": 1545.0831909179688,
+        "x": 749.8833236694336,
+        "y": 641.0832786560059,
         "wires": [
             [
                 "69c2617d.8e3e98"
@@ -2425,8 +1956,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 687.7666015625,
-        "y": 1539.3999633789062,
+        "x": 1011.7665977478027,
+        "y": 632.4000434875488,
         "wires": [
             [
                 "5117b0e7.e29e5"
@@ -2456,8 +1987,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 135.88333129882812,
-        "y": 1540.6832885742188,
+        "x": 459.88332748413086,
+        "y": 633.6833686828613,
         "wires": [
             [
                 "ce52388c.8e1da8"
@@ -2473,12 +2004,11 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.bath\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 926.7666015625,
-        "y": 1535.9332885742188,
+        "x": 1250.7665977478027,
+        "y": 628.9333686828613,
         "wires": [
             [
                 "3c471fd5.5a8cf"
@@ -2500,8 +2030,8 @@
         "state_type": "str",
         "override_payload": true,
         "override_data": true,
-        "x": 571.88330078125,
-        "y": 1711.283203125,
+        "x": 895.8832969665527,
+        "y": 804.2832832336426,
         "wires": [
             [
                 "2329e002.14fdc"
@@ -2518,12 +2048,11 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"light.bath\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 787.88330078125,
-        "y": 1711.2833251953125,
+        "x": 1111.8832969665527,
+        "y": 804.2834053039551,
         "wires": [
             []
         ]
@@ -2537,12 +2066,11 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.bath\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1155.88330078125,
-        "y": 1589.283203125,
+        "x": 1479.8832969665527,
+        "y": 682.2832832336426,
         "wires": [
             []
         ]
@@ -2551,12 +2079,12 @@
         "id": "ce52388c.8e1da8",
         "type": "function",
         "z": "2b16d656.3b7442",
-        "name": "",
+        "name": "Ikea dimmer",
         "func": "data = msg.payload.event.event\non = 0\noff = 0\n\n\nfor (i = 0; i < data.length; i++) {\n    if (data[i]==1002 || data[i]==2002) {\n        on++\n    } else {\n        off++\n    }\n}\n\n\nif (on==off) {\n    msg.payload = data[0] == 1002 || data[0] == 2002\n    return msg\n}\nmsg.payload = on>off\nreturn msg\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 262.76666259765625,
-        "y": 1552.7166442871094,
+        "x": 606.766658782959,
+        "y": 645.716724395752,
         "wires": [
             [
                 "818c84a4.cf7eb8"
@@ -2571,133 +2099,14 @@
         "server": "5d298046.09a7b",
         "service_domain": "light",
         "service": "turn_on",
-        "data": "{\"entity_id\":\"light.bath\",\"brightness\":100,\"rgb_color\":[255,255,255],\"white_value\":255}",
-        "render_data": false,
+        "data": "{\"entity_id\":\"light.bath\",\"brightness\":255,\"rgb_color\":[255,44,0],\"white_value\":255}",
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1152.88330078125,
-        "y": 1535.2833251953125,
+        "x": 1476.8832969665527,
+        "y": 628.2834053039551,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "88bee899.8b5298",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "volume_set",
-        "data": "",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1470.88330078125,
-        "y": 738.8832702636719,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4e07c935.b4115",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.home\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1112.88330078125,
-        "y": 699.88330078125,
-        "wires": [
-            [
-                "88bee899.8b5298"
-            ]
-        ]
-    },
-    {
-        "id": "b1f0ba65.97f64",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.googlehome5130\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1102.88330078125,
-        "y": 821.88330078125,
-        "wires": [
-            [
-                "88bee899.8b5298"
-            ]
-        ]
-    },
-    {
-        "id": "5c4ffd2c.33ecb4",
-        "type": "api-call-service",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "service_domain": "media_player",
-        "service": "volume_set",
-        "data": "",
-        "render_data": false,
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "x": 1367.88330078125,
-        "y": 927.88330078125,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "672b0a17.28fed4",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.googlehome5130\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1091.88330078125,
-        "y": 1003.88330078125,
-        "wires": [
-            [
-                "5c4ffd2c.33ecb4"
-            ]
-        ]
-    },
-    {
-        "id": "8625d4d9.ba4178",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.kitchen_speaker\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1119.88330078125,
-        "y": 949.88330078125,
-        "wires": [
-            [
-                "5c4ffd2c.33ecb4"
-            ]
-        ]
-    },
-    {
-        "id": "fa248b04.f16e6",
-        "type": "function",
-        "z": "2b16d656.3b7442",
-        "name": "",
-        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.home\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1094.88330078125,
-        "y": 889.8832702636719,
-        "wires": [
-            [
-                "5c4ffd2c.33ecb4"
-            ]
         ]
     },
     {
@@ -2705,11 +2114,11 @@
         "type": "function",
         "z": "2b16d656.3b7442",
         "name": "Next color calc",
-        "func": "colors = [\"BlueViolet\",\"red\",\"purple\",\"blue\",\"green\",\"cyan\", \"warm\"]\ncurrent_color = flow.get(\"current_color_bath\") || false\n\n\nif (current_color) {\n    if (current_color == \"cyan\") {\n        msg.payload = {\"data\": {\"brightness\":100,\"rgb_color\":[255,255,255],\"white_value\":255}}\n        flow.set(\"current_color_bath\",\"warm\")\n        return msg\n    }\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color_bath\",current_color)\n}\nelse {\n    flow.set(\"current_color_bath\",\"red\")\n    current_color = \"red\"\n}\n\nmsg.payload = {\"data\": {\"brightness\":255, \"white_value\":0, \"color_name\": current_color}}\n\nreturn msg;",
+        "func": "colors = [\"BlueViolet\",\"red\",\"purple\",\"blue\",\"green\",\"cyan\", \"warm\"]\ncurrent_color = flow.get(\"current_color_bath\") || false\n\n\nif (current_color) {\n    if (current_color == \"cyan\") {\n        msg.payload = {\"data\": {\"brightness\":255,\"rgb_color\":[255,44,0],\"white_value\":255}}\n        flow.set(\"current_color_bath\",\"warm\")\n        return msg\n    }\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color_bath\",current_color)\n}\nelse {\n    flow.set(\"current_color_bath\",\"red\")\n    current_color = \"red\"\n}\n\nmsg.payload = {\"data\": {\"brightness\":255, \"white_value\":0, \"color_name\": current_color}}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 939.88330078125,
-        "y": 1589.683349609375,
+        "x": 1263.8832969665527,
+        "y": 682.6834297180176,
         "wires": [
             [
                 "58ddd84a.640f38"
@@ -2789,7 +2198,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\",\"white_value\":0}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
@@ -2810,7 +2218,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\",\"effect\":\"white_strobe\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
@@ -2852,7 +2259,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\",\"brightness\":50,\"white_value\":255,\"rgb_color\":[255,255,255]}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
@@ -2870,8 +2276,7 @@
         "server": "5d298046.09a7b",
         "service_domain": "light",
         "service": "turn_on",
-        "data": "{\"entity_id\":\"light.sofa\",\"brightness\":255,\"white_value\":0,\"rgb_color\":[255,35,0]}",
-        "render_data": false,
+        "data": "{\"entity_id\":\"light.sofa\",\"brightness\":255,\"white_value\":0,\"rgb_color\":[255,20,0]}",
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
@@ -2890,7 +2295,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\",\"brightness\":255,\"white_value\":0,\"rgb_color\":[0,255,200]}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
@@ -2909,7 +2313,6 @@
         "service_domain": "counter",
         "service": "increment",
         "data": "{\"entity_id\":\"counter.plant_counter\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -2979,7 +2382,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
@@ -3015,12 +2417,12 @@
         "id": "d5afa19b.e7253",
         "type": "function",
         "z": "2b16d656.3b7442",
-        "name": "",
+        "name": "Cube",
         "func": "next = [3002,5003,4005,2004]\nprev = [2003, 3005, 5004, 4002]\n\nplaypause = [1001,2002,3003,4004,5005,6006,7007]\n\nevent = msg.payload.event.event\n\nif (next.indexOf(event) > -1) {\n    msg.payload = \"next\"\n}\n\nelse if (prev.indexOf(event) > -1) {\n    msg.payload = \"prev\"\n}\n\nelse if(playpause.indexOf(event) > -1) {\n    msg.payload = \"playpause\"\n}\n\n\n\nelse {\n    msg.payload = \"none\"\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 125.10000228881836,
-        "y": 1933.2001280784607,
+        "x": 436.0999870300293,
+        "y": 965.2001814842224,
         "wires": [
             [
                 "e9eb931a.4d564"
@@ -3059,8 +2461,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 291.83330726623535,
-        "y": 1957.0890312194824,
+        "x": 602.8332920074463,
+        "y": 989.0890846252441,
         "wires": [
             [
                 "76879c71.41cd74"
@@ -3083,12 +2485,11 @@
         "service_domain": "media_player",
         "service": "media_next_track",
         "data": "{\"entity_id\":\"media_player.spotify\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 921.8333396911621,
-        "y": 1933.2888050079346,
+        "x": 1232.833324432373,
+        "y": 965.2888584136963,
         "wires": [
             []
         ]
@@ -3102,12 +2503,11 @@
         "service_domain": "media_player",
         "service": "media_previous_track",
         "data": "{\"entity_id\":\"media_player.spotify\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 929.5333099365234,
-        "y": 1874.2888050079346,
+        "x": 1240.5332946777344,
+        "y": 906.2888584136963,
         "wires": [
             []
         ]
@@ -3121,12 +2521,11 @@
         "service_domain": "media_player",
         "service": "media_play_pause",
         "data": "{\"entity_id\":\"media_player.spotify\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 941.5333137512207,
-        "y": 2110.288805961609,
+        "x": 1252.5332984924316,
+        "y": 1142.2888593673706,
         "wires": [
             []
         ]
@@ -3135,12 +2534,12 @@
         "id": "ca7ebc1d.0c037",
         "type": "function",
         "z": "2b16d656.3b7442",
-        "name": "",
+        "name": "Cube degrees",
         "func": "\n\nevent = msg.payload.event.event\n\n\nmsg.payload = parseInt(event) / 36000\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 113.16667556762695,
-        "y": 2419.333456993103,
+        "x": 463.16668701171875,
+        "y": 1267.333683013916,
         "wires": [
             [
                 "cfc4245d.98e1c8",
@@ -3165,8 +2564,8 @@
         "state_type": "str",
         "override_payload": false,
         "override_data": true,
-        "x": 403,
-        "y": 2347.333595275879,
+        "x": 736.0000228881836,
+        "y": 1260.333797454834,
         "wires": [
             [
                 "82adbf30.dc724"
@@ -3182,8 +2581,8 @@
         "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\nmsg.payload = {\"data\":{\"volume_level\": parseFloat(volume), \"entity_id\":\"media_player.kitchen_speaker\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 715.8818054199219,
-        "y": 2371.2604427337646,
+        "x": 1048.8818283081055,
+        "y": 1284.2606449127197,
         "wires": [
             [
                 "a708b4c1.ef4f48"
@@ -3205,8 +2604,8 @@
         "state_type": "str",
         "override_payload": false,
         "override_data": true,
-        "x": 427.8818664550781,
-        "y": 2405.060591697693,
+        "x": 760.8818893432617,
+        "y": 1318.060793876648,
         "wires": [
             [
                 "a729441.1bcfcb8"
@@ -3229,8 +2628,8 @@
         "state_type": "str",
         "override_payload": false,
         "override_data": true,
-        "x": 438.6818542480469,
-        "y": 2459.060552597046,
+        "x": 771.6818771362305,
+        "y": 1372.060754776001,
         "wires": [
             [
                 "bd8a969d.b0ba48"
@@ -3247,12 +2646,11 @@
         "service_domain": "media_player",
         "service": "volume_set",
         "data": "",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1075.5651550292969,
-        "y": 2357.543767929077,
+        "x": 1408.5651779174805,
+        "y": 1270.5439701080322,
         "wires": [
             []
         ]
@@ -3265,8 +2663,8 @@
         "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume, \"entity_id\":\"media_player.googlehome5130\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 707.5651550292969,
-        "y": 2440.5437984466553,
+        "x": 1040.5651779174805,
+        "y": 1353.5440006256104,
         "wires": [
             [
                 "a708b4c1.ef4f48"
@@ -3281,8 +2679,8 @@
         "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume, \"entity_id\":\"media_player.home\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 709.9848480224609,
-        "y": 2310.317193031311,
+        "x": 1042.9848709106445,
+        "y": 1223.317395210266,
         "wires": [
             [
                 "a708b4c1.ef4f48"
@@ -3306,8 +2704,8 @@
         "override_payload": "none",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 395,
-        "y": 2294.4443531036377,
+        "x": 728.0000228881836,
+        "y": 1207.4445552825928,
         "wires": [
             [
                 "e283e3a1.31feb"
@@ -3323,8 +2721,8 @@
         "func": "\n\nvolume = msg.data.attributes.volume_level + msg.payload;\n    if (volume > 1){\n        volume = 1;\n    }\n    if (volume < 0.1) {\n        volume = 0.1\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume, \"entity_id\":\"media_player.tv\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 713,
-        "y": 2260.4443359375,
+        "x": 1046.0000228881836,
+        "y": 1173.444538116455,
         "wires": [
             [
                 "a708b4c1.ef4f48"
@@ -3346,8 +2744,8 @@
         "state_type": "str",
         "override_payload": false,
         "override_data": true,
-        "x": 603,
-        "y": 2060.4443359375,
+        "x": 913.9999847412109,
+        "y": 1092.4443893432617,
         "wires": [
             [
                 "98f782a1.3f307"
@@ -3366,12 +2764,11 @@
         "service_domain": "media_player",
         "service": "media_play_pause",
         "data": "{\"entity_id\":\"media_player.spotify\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1260.0000457763672,
-        "y": 2025.5555305480957,
+        "x": 1571.0000305175781,
+        "y": 1057.5555839538574,
         "wires": [
             []
         ]
@@ -3389,10 +2786,12 @@
         "override_topic": true,
         "entity_id": "media_player.tv",
         "state_type": "str",
-        "override_payload": false,
-        "override_data": true,
-        "x": 600,
-        "y": 1937.2221813201904,
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 910.9999847412109,
+        "y": 969.2222347259521,
         "wires": [
             [],
             [
@@ -3415,8 +2814,8 @@
         "state_type": "str",
         "override_payload": false,
         "override_data": true,
-        "x": 601,
-        "y": 1878.2221813201904,
+        "x": 911.9999847412109,
+        "y": 910.2222347259521,
         "wires": [
             [],
             [
@@ -3439,8 +2838,8 @@
         "state_type": "str",
         "override_payload": false,
         "override_data": true,
-        "x": 911.3333206176758,
-        "y": 2015.6666402816772,
+        "x": 1222.3333053588867,
+        "y": 1047.666693687439,
         "wires": [
             [
                 "8e6f21a6.f7d23"
@@ -3459,12 +2858,11 @@
         "service_domain": "media_player",
         "service": "media_play_pause",
         "data": "{\"entity_id\":\"media_player.tv\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 1255.3333740234375,
-        "y": 1971.6666412353516,
+        "x": 1566.3333587646484,
+        "y": 1003.6666946411133,
         "wires": [
             []
         ]
@@ -3569,7 +2967,6 @@
         "service_domain": "light",
         "service": "toggle",
         "data": "{\"entity_id\":\"light.bed\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -3631,7 +3028,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_2\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -3658,11 +3054,16 @@
                 "t": "eq",
                 "v": "spotify_controller",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "switch_14",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
+        "outputs": 3,
         "x": 82.76666259765625,
         "y": 546.2666015625,
         "wires": [
@@ -3671,6 +3072,9 @@
             ],
             [
                 "4dac1cbf.7b8524"
+            ],
+            [
+                "152963b0.5b80ac"
             ]
         ]
     },
@@ -3838,7 +3242,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -3859,7 +3262,6 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"light.light_1, light.sofa\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -3880,7 +3282,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\",\"brightness\":0,\"white_value\":255,\"rgb_color\":[255,255,255]}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -3899,7 +3300,6 @@
         "service_domain": "switch",
         "service": "toggle",
         "data": "{\"entity_id\":\"switch.light_4\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -3946,7 +3346,6 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"light.light_1\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -3965,7 +3364,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_1\",\"brightness\":190}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4012,7 +3410,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4033,7 +3430,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4052,7 +3448,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.sofa\",\"brightness\":50,\"rgb_color\":[255,255,255],\"white_value\":255}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4069,7 +3464,7 @@
         "type": "function",
         "z": "4adf2b12.26e9d4",
         "name": "Next color calc",
-        "func": "colors = [\"BlueViolet\",\"red\",\"purple\",\"blue\",\"green\",\"cyan\", \"warm\"]\ncurrent_color = flow.get(\"current_color_bath\") || false\n\n\nif (current_color) {\n    if (current_color == \"cyan\") {\n        msg.payload = {\"data\": {\"brightness\":100,\"rgb_color\":[255,255,255],\"white_value\":255}}\n        flow.set(\"current_color_bath\",\"warm\")\n        return msg\n    }\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color_bath\",current_color)\n}\nelse {\n    flow.set(\"current_color_bath\",\"red\")\n    current_color = \"red\"\n}\n\nmsg.payload = {\"data\": {\"brightness\":255, \"white_value\":0, \"color_name\": current_color}}\n\nreturn msg;",
+        "func": "colors = [\"BlueViolet\",\"red\",\"purple\",\"blue\",\"green\",\"cyan\", \"warm\", \"orange\"]\ncurrent_color = flow.get(\"current_color_bath\") || false\n\n\nif (current_color) {\n    if (current_color == \"cyan\") {\n        msg.payload = {\"data\": {\"brightness\":100,\"rgb_color\":[255,255,255],\"white_value\":255}}\n        flow.set(\"current_color_bath\",\"warm\")\n        return msg\n    }\n    if (current_color ==\"warm\") {\n        msg.payload = {\"data\": {\"brightness\":255,\"rgb_color\":[255,22,0],\"white_value\":0}}\n        flow.set(\"current_color_bath\", \"orange\")\n        return msg\n    }\n    i = colors.indexOf(current_color)+1\n    if (i >= colors.length) {\n        i = 0\n    }\n    current_color = colors[i]\n    flow.set(\"current_color_bath\",current_color)\n}\nelse {\n    flow.set(\"current_color_bath\",\"red\")\n    current_color = \"red\"\n}\n\nmsg.payload = {\"data\": {\"brightness\":255, \"white_value\":0, \"color_name\": current_color}}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 954.2024726867676,
@@ -4089,7 +3484,6 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"light.sofa\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4195,7 +3589,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_3\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4266,7 +3659,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_2\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4285,7 +3677,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_3\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4373,7 +3764,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_2\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4392,7 +3782,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_3\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4463,7 +3852,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_2\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4482,7 +3870,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_3\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4529,7 +3916,6 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"light.bed\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4550,7 +3936,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.bed\",\"color_name\":\"peachpuff\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4641,7 +4026,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_2\",\"color_name\":\"peachpuff\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4659,13 +4043,12 @@
         "server": "5d298046.09a7b",
         "service_domain": "light",
         "service": "turn_on",
-        "data": "{\"entity_id\":\"light.light_2\",\"color_name\":\"peachpuff\"}",
-        "render_data": false,
+        "data": "{\"entity_id\":\"light.light_3\",\"color_name\":\"peachpuff\"}",
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 724.444465637207,
-        "y": 959.5555896759033,
+        "x": 729.4444580078125,
+        "y": 988.5556030273438,
         "wires": [
             []
         ]
@@ -4679,7 +4062,6 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"light.light_2\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4734,8 +4116,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 962.4444580078125,
-        "y": 938.888916015625,
+        "x": 957.4444580078125,
+        "y": 939.888916015625,
         "wires": [
             [
                 "6546cc87.1d4cf4"
@@ -4752,12 +4134,11 @@
         "service_domain": "light",
         "service": "turn_off",
         "data": "{\"entity_id\":\"light.light_3\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 722.4444580078125,
-        "y": 920.888916015625,
+        "x": 725.4444580078125,
+        "y": 941.888916015625,
         "wires": [
             [
                 "440351ef.4be8c"
@@ -4786,8 +4167,8 @@
         "func": "flow.set(\"current_color\",\"peachpuff\")",
         "outputs": 1,
         "noerr": 0,
-        "x": 1181.4444580078125,
-        "y": 937.888916015625,
+        "x": 1165.4444580078125,
+        "y": 934.888916015625,
         "wires": [
             []
         ]
@@ -4801,7 +4182,6 @@
         "service_domain": "switch",
         "service": "turn_on",
         "data": "{\"entity_id\":\"switch.light_4\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4820,7 +4200,6 @@
         "service_domain": "light",
         "service": "turn_on",
         "data": "{\"entity_id\":\"light.light_1\",\"brightness\":190}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
@@ -4839,7 +4218,6 @@
         "service_domain": "switch",
         "service": "turn_off",
         "data": "{\"entity_id\":\"switch.light_4\"}",
-        "render_data": false,
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
@@ -5104,6 +4482,954 @@
                 "5e189f72.9e028"
             ],
             []
+        ]
+    },
+    {
+        "id": "b97ee12e.87a07",
+        "type": "switch",
+        "z": "4adf2b12.26e9d4",
+        "name": "Spotify",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3001",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 6,
+        "x": 103.01953506469727,
+        "y": 1934.0039558410645,
+        "wires": [
+            [
+                "a6983396.2932",
+                "cc212ccd.54002",
+                "8d5df09b.1e6fa"
+            ],
+            [
+                "93b662fe.4860f"
+            ],
+            [
+                "5426fec1.26753"
+            ],
+            [
+                "48200613.71d5a8",
+                "250a41c1.caa17e",
+                "8dadc5c1.81bb48"
+            ],
+            [
+                "ffc98270.b331c"
+            ],
+            [
+                "999af684.037a08",
+                "52927706.62baf8",
+                "400d190e.b6db78"
+            ]
+        ]
+    },
+    {
+        "id": "5426fec1.26753",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_next_track",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 459.0195617675781,
+        "y": 1886.2039489746094,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93b662fe.4860f",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_previous_track",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 474.7195739746094,
+        "y": 1847.2038879394531,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ffc98270.b331c",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "media_play_pause",
+        "data": "{\"entity_id\":\"media_player.spotify\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 431.7195739746094,
+        "y": 1933.2039489746094,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6983396.2932",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.home",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 870.0195617675781,
+        "y": 1729.2039489746094,
+        "wires": [
+            [
+                "53d71c1e.8639d4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c295aab.e566358",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.kitchen_speaker\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1166.7195129394531,
+        "y": 1733.4038391113281,
+        "wires": [
+            [
+                "3b5b4d6b.bb4392"
+            ]
+        ]
+    },
+    {
+        "id": "cc212ccd.54002",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.kitchen_speaker",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 900.7195739746094,
+        "y": 1777.2039489746094,
+        "wires": [
+            [
+                "c295aab.e566358"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8d5df09b.1e6fa",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.googlehome5130",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 889.5195617675781,
+        "y": 1821.2039489746094,
+        "wires": [
+            [
+                "a46c3f63.63acd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "48200613.71d5a8",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.home",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 870.5195617675781,
+        "y": 1889.0039978027344,
+        "wires": [
+            [
+                "283971bf.6ad3ce"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "250a41c1.caa17e",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.kitchen_speaker",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 901.2195739746094,
+        "y": 1937.0039978027344,
+        "wires": [
+            [
+                "e96e6f0f.bd972"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8dadc5c1.81bb48",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.googlehome5130",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 890.0195617675781,
+        "y": 1981.0039978027344,
+        "wires": [
+            [
+                "1e1ee396.85001c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "55f9d5fb.66113c",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.home\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 683.5195617675781,
+        "y": 2038.2039184570312,
+        "wires": [
+            [
+                "ce2d5c34.ba7ea"
+            ]
+        ]
+    },
+    {
+        "id": "999af684.037a08",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.home",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 408.5195617675781,
+        "y": 2051.0039672851562,
+        "wires": [
+            [
+                "55f9d5fb.66113c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "49d24f0c.18427",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.kitchen_speaker\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700.2195129394531,
+        "y": 2088.2039184570312,
+        "wires": [
+            [
+                "ce2d5c34.ba7ea"
+            ]
+        ]
+    },
+    {
+        "id": "52927706.62baf8",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.kitchen_speaker",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 439.2195739746094,
+        "y": 2099.0039672851562,
+        "wires": [
+            [
+                "49d24f0c.18427"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9464791e.b434c8",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "msg.payload.entity_id=\"media_player.googlehome5130\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 695.0195617675781,
+        "y": 2138.2039184570312,
+        "wires": [
+            [
+                "ce2d5c34.ba7ea"
+            ]
+        ]
+    },
+    {
+        "id": "400d190e.b6db78",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "media_player.googlehome5130",
+        "state_type": "str",
+        "override_payload": true,
+        "override_data": true,
+        "x": 428.0195617675781,
+        "y": 2143.0039672851562,
+        "wires": [
+            [
+                "9464791e.b434c8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ce2d5c34.ba7ea",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "data": "{\"volume_level\":0.1}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 973.5195617675781,
+        "y": 2096.2039489746094,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b5b4d6b.bb4392",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "data": "",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1526.4028625488281,
+        "y": 1719.6871643066406,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53d71c1e.8639d4",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.home\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1168.4028625488281,
+        "y": 1680.6871948242188,
+        "wires": [
+            [
+                "3b5b4d6b.bb4392"
+            ]
+        ]
+    },
+    {
+        "id": "a46c3f63.63acd",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level + 0.1;\n    if (volume > 1){\n        volume = 1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.googlehome5130\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1158.4028625488281,
+        "y": 1802.6871948242188,
+        "wires": [
+            [
+                "3b5b4d6b.bb4392"
+            ]
+        ]
+    },
+    {
+        "id": "70a3390e.c01fc8",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "data": "",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1423.4028625488281,
+        "y": 1908.6871948242188,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1e1ee396.85001c",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.googlehome5130\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1147.4028625488281,
+        "y": 1984.6871948242188,
+        "wires": [
+            [
+                "70a3390e.c01fc8"
+            ]
+        ]
+    },
+    {
+        "id": "e96e6f0f.bd972",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.kitchen_speaker\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1175.4028625488281,
+        "y": 1930.6871948242188,
+        "wires": [
+            [
+                "70a3390e.c01fc8"
+            ]
+        ]
+    },
+    {
+        "id": "283971bf.6ad3ce",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "func": "\n\nvolume = msg.data.attributes.volume_level - 0.1;\n    if (volume < 0.1){\n        volume = 0.1;\n    }\n    msg.payload = {\"data\":{\"volume_level\":volume}, \"entity_id\":\"media_player.home\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1150.4028625488281,
+        "y": 1870.6871643066406,
+        "wires": [
+            [
+                "70a3390e.c01fc8"
+            ]
+        ]
+    },
+    {
+        "id": "21e4770f.41c288",
+        "type": "server-events",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "event_type": "deconz_event",
+        "x": 152.01953125,
+        "y": 84.00390625,
+        "wires": [
+            [
+                "242c0b1.ff10df4"
+            ]
+        ]
+    },
+    {
+        "id": "242c0b1.ff10df4",
+        "type": "switch",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "property": "payload.event.id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "vibration_sensor",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 397,
+        "y": 108,
+        "wires": [
+            [
+                "eb45580.3ffc7a8"
+            ]
+        ]
+    },
+    {
+        "id": "eb45580.3ffc7a8",
+        "type": "function",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "func": "date = new Date()\nday = date.getDate()\nmonth = date.getMonth()+1\nyear = date.getFullYear()\n\nhours = date.getHours()\nminutes = date.getMinutes()\n\nmsg.payload = {data:{\"date\":year.toString()+\"-\"+month.toString()+\"-\"+day.toString(),\"time\":hours.toString()+\":\"+minutes.toString()+\":00\"}}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 581.5,
+        "y": 99,
+        "wires": [
+            [
+                "6720ae91.770f4"
+            ]
+        ]
+    },
+    {
+        "id": "6720ae91.770f4",
+        "type": "api-call-service",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "input_datetime",
+        "service": "set_datetime",
+        "data": "{\"entity_id\":\"input_datetime.mailbox\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 830,
+        "y": 109,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "152963b0.5b80ac",
+        "type": "switch",
+        "z": "4adf2b12.26e9d4",
+        "name": "Living room 2-button",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2002",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 188.99999237060547,
+        "y": 1538.0001106262207,
+        "wires": [
+            [
+                "abf9c890.f9c7b8"
+            ],
+            [
+                "eff1950.a551668"
+            ]
+        ]
+    },
+    {
+        "id": "eff1950.a551668",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.sofa",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 553.017333984375,
+        "y": 1549.3438291549683,
+        "wires": [
+            [
+                "d1cc46a6.297d88"
+            ],
+            [
+                "65f5a4ef.85cacc"
+            ]
+        ]
+    },
+    {
+        "id": "d1cc46a6.297d88",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.sofa\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 804.017333984375,
+        "y": 1510.34375,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65f5a4ef.85cacc",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.sofa\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 786.017333984375,
+        "y": 1562.34375,
+        "wires": [
+            [
+                "50d11a6d.878524"
+            ]
+        ]
+    },
+    {
+        "id": "50d11a6d.878524",
+        "type": "function",
+        "z": "4adf2b12.26e9d4",
+        "name": "Reset curr color",
+        "func": "flow.set(\"current_color_bath\",\"warm\")",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1005.017333984375,
+        "y": 1558.34375,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "abf9c890.f9c7b8",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "toggle",
+        "data": "{\"entity_id\":\"switch.light_4\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 582.017333984375,
+        "y": 1479.34375,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa6a6e32.e844e",
+        "type": "trigger-state",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "entityid": "binary_sensor.presence_16",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "namzsvhql2",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 183.07986450195312,
+        "y": 240.9027910232544,
+        "wires": [
+            [
+                "c2974243.089ca"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c2974243.089ca",
+        "type": "api-current-state",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.bath",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 174.0729217529297,
+        "y": 408.75697231292725,
+        "wires": [
+            [
+                "3a7cb5cb.50c10a",
+                "c469b652.87ab58"
+            ],
+            [
+                "c469b652.87ab58"
+            ]
+        ]
+    },
+    {
+        "id": "3a7cb5cb.50c10a",
+        "type": "api-call-service",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.bath\",\"brightness\":255,\"rgb_color\":[255,244,0],\"white_value\":255}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 548.0173034667969,
+        "y": 256.01043033599854,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c469b652.87ab58",
+        "type": "trigger",
+        "z": "2f1b5793.37aa38",
+        "op1": "",
+        "op2": "1",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": true,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "name": "",
+        "x": 459.0800380706787,
+        "y": 405.74653816223145,
+        "wires": [
+            [
+                "c295c436.a98e38"
+            ]
+        ]
+    },
+    {
+        "id": "28f7e8c2.31e688",
+        "type": "api-call-service",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.bath\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 1512.017433166504,
+        "y": 277.1214904785156,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c295c436.a98e38",
+        "type": "api-current-state",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.bath",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 690.0172882080078,
+        "y": 407.12152194976807,
+        "wires": [
+            [
+                "d28a48e1.299148"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d28a48e1.299148",
+        "type": "api-current-state",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "200",
+        "halt_if_type": "num",
+        "halt_if_compare": "gt",
+        "override_topic": false,
+        "entity_id": "sensor.lightlevel_15",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 970.0763931274414,
+        "y": 349.871639251709,
+        "wires": [
+            [
+                "34169b26.b1ab24"
+            ],
+            [
+                "c469b652.87ab58"
+            ]
+        ]
+    },
+    {
+        "id": "34169b26.b1ab24",
+        "type": "api-current-state",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.presence_16",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1204.0694580078125,
+        "y": 298.75002241134644,
+        "wires": [
+            [
+                "28f7e8c2.31e688"
+            ],
+            [
+                "c469b652.87ab58"
+            ]
         ]
     }
 ]
