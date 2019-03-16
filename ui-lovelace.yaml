@@ -5,10 +5,10 @@
 resources:
   - url: /local/mini-media-player-bundle.js?v=0.9.8
     type: module
-  - url: /local/plugins/card-tools.js?v=11
+  - url: /local/plugins/card-tools.js?v=12
     type: js
-  - url: /local/plugins/card-modder.js?v=11
-    type: module
+  - url: /local/plugins/card-modder.js?v=12
+    type: js
 
 title: Home
 views:
@@ -20,31 +20,51 @@ views:
     cards:
       - type: vertical-stack
         cards:
-        - type: custom:card-modder
-          style:
-            --paper-card-background-color: rgba(0, 100, 0, 0.4)
-            --paper-item-icon-color: white
-            width: 150px
-            text-align: center
-            height: 120px
-            font-size: 120%
-            margin-left: auto
-            margin-right: 0px
-            color: white
+        - type: horizontal-stack
+          cards:
+          - type: custom:card-modder
+            style:
+              --paper-card-background-color: rgba(100, 0, 0, 0.4)
+              --paper-item-icon-color: white
+              text-align: center
+              height: 120px
+              width: 260px
+              font-size: 120%
+              color: white
             
-          card:
-            type: glance
-            show_state: true
-            show_name: true
-            entities:
-              - entity: sensor.since_watered
-                icon: mdi:flower-tulip
-                name: Days ago
-                hold_action:
-                  action: call-service
-                  service: counter.reset
-                  service_data:
-                    entity_id: counter.plant_counter
+            card:
+              type: glance
+              show_state: true
+              show_name: true
+              entities:
+                - entity: input_datetime.mailbox
+                  icon: mdi:mailbox
+                  name: Mailbox opened
+          - type: custom:card-modder
+            style:
+              --paper-card-background-color: rgba(0, 100, 0, 0.4)
+              --paper-item-icon-color: white
+              width: 120px
+              text-align: center
+              height: 120px
+              font-size: 120%
+              margin-left: auto
+              margin-right: 0px
+              color: white
+            
+            card:
+              type: glance
+              show_state: true
+              show_name: true
+              entities:
+                - entity: sensor.since_watered
+                  icon: mdi:flower-tulip
+                  name: Days ago
+                  hold_action:
+                    action: call-service
+                    service: counter.reset
+                    service_data:
+                      entity_id: counter.plant_counter
         - type: entities
           title: Bedroom
           show_header_toggle: false
@@ -62,7 +82,8 @@ views:
           title: Devices
           show_header_toggle: false
           entities:
-            - entity: switch.heater
+            - entity: switch.extra
+              name: Heater
               icon: mdi:fire
         - type: entities
           show_header_toggle: false
@@ -166,7 +187,6 @@ views:
       - type: vertical-stack
         cards:
         - type: entities
-          title: Media Players
           show_header_toggle: false
           entities:
             - entity: media_player.tv
@@ -245,6 +265,15 @@ views:
               hide_mute: true
               hide_power: true
               group: true
+        - type: sensor
+          entity: sensor.temperature_7
+          name: Stue
+          graph: line
+        - type: sensor
+          entity: sensor.temperature_11
+          name: Soverom
+          graph: line
+        
        #- type: media-control
        # entity: media_player.kitchen_tv
     #  - type: media-control
