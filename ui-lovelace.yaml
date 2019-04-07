@@ -85,18 +85,17 @@ views:
             - entity: switch.extra
               name: Heater
               icon: mdi:fire
+            - entity: input_boolean.heater_auto_on
+              name: Keep house warm from 06-22
+              icon: mdi:settings
         - type: entities
           show_header_toggle: false
           entities:
             - entity: input_datetime.only_time
-              name: 30 minute activation
-            - entity: input_boolean.heater_auto_on
-              name: Heater
-              icon: mdi:settings
+              name: When are you waking up?
             - entity: input_boolean.wake_up_light
               name: Wake-up light
               icon: mdi:settings
-
 
       - type: vertical-stack
         cards:

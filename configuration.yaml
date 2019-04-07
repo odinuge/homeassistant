@@ -123,9 +123,12 @@ scene:
 
 device_tracker:
   - platform: nmap_tracker
-    hosts: !secret device_tracker_ip
+    hosts:
+      - !secret host1
+      - !secret host2
+    home_interval: 30
     consider_home: 0:30:00
-    interval_seconds: 45
+    interval_seconds: 30
     new_device_defaults:
       track_new_devices: false
 
@@ -178,10 +181,7 @@ sensor:
         friendly_name: "Days since watered"
         value_template: "{{ states('counter.plant_counter') }}"
 
-googlehome:
-  devices:
-    - host: 192.168.1.17
-      track_alarms: true
-    - host: 192.168.1.9
-      track_alarms: true
-
+notify:
+  - name: Messenger
+    platform: facebook
+    page_access_token: EAAGEs48WsEwBAL5u2xABu0EWlaEAA8KZBnZBKb27n6c5tlEzUDZCLOTuokKujaVFSPCzP0NOv8TULaDiWqE79gzZAGe6ZB7ZBg4og6dS5povcZCbLUPGZA9TPn3LEPDJ35PBGqWC4vVnBbpG4cZCWHiS8bMDPn5tpRiHa8YadtzW2HwZDZD
