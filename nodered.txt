@@ -1005,12 +1005,9 @@
         "x": 515.88330078125,
         "y": 705.0833740234375,
         "wires": [
+            [],
             [
-                "4b9e04e7.1ff88c"
-            ],
-            [
-                "57e6891d.41647",
-                "1d2713df.6c13a4"
+                "57e6891d.41647"
             ]
         ]
     },
@@ -1295,8 +1292,10 @@
         "override_topic": true,
         "entity_id": "input_boolean.heater_auto_on",
         "state_type": "str",
-        "override_payload": true,
-        "override_data": true,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
         "x": 771.88330078125,
         "y": 790.8833312988281,
         "wires": [
@@ -1342,8 +1341,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 463.8833312988281,
-        "y": 927.4834289550781,
+        "x": 466.8833312988281,
+        "y": 876.4834253787994,
         "wires": [
             [
                 "bad884cb.86d578"
@@ -1367,8 +1366,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 313.88336181640625,
-        "y": 929.4834289550781,
+        "x": 316.88336181640625,
+        "y": 878.4834253787994,
         "wires": [
             [
                 "7d1d0aca.fccff4"
@@ -1384,8 +1383,8 @@
         "func": "flow.set(\"stopped_today\",1)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 726.3833312988281,
-        "y": 927.0834045410156,
+        "x": 729.3833312988281,
+        "y": 876.0834009647369,
         "wires": [
             []
         ]
@@ -1415,12 +1414,12 @@
             },
             {
                 "t": "eq",
-                "v": "switch_4",
+                "v": "lumi_sensor_cube_aqgl01_4",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "switch_6",
+                "v": "lumi_sensor_cube_aqgl01_6",
                 "vt": "str"
             }
         ],
@@ -3059,11 +3058,26 @@
                 "t": "eq",
                 "v": "switch_14",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "switch_18",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "switch_19",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "switch_20",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 3,
+        "outputs": 6,
         "x": 82.76666259765625,
         "y": 546.2666015625,
         "wires": [
@@ -3075,6 +3089,15 @@
             ],
             [
                 "152963b0.5b80ac"
+            ],
+            [
+                "2059081d.aebd78"
+            ],
+            [
+                "f4544840.fb2198"
+            ],
+            [
+                "603d508f.4b84a"
             ]
         ]
     },
@@ -5030,8 +5053,8 @@
         "name": "",
         "server": "5d298046.09a7b",
         "event_type": "deconz_event",
-        "x": 152.01953125,
-        "y": 84.00390625,
+        "x": 167.01953125,
+        "y": 672.0039310455322,
         "wires": [
             [
                 "242c0b1.ff10df4"
@@ -5055,11 +5078,12 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 397,
-        "y": 108,
+        "x": 543.9999771118164,
+        "y": 674.0000247955322,
         "wires": [
             [
-                "eb45580.3ffc7a8"
+                "eb45580.3ffc7a8",
+                "12d61986.dac776"
             ]
         ]
     },
@@ -5071,8 +5095,8 @@
         "func": "date = new Date()\nday = date.getDate()\nmonth = date.getMonth()+1\nyear = date.getFullYear()\n\nhours = date.getHours()\nminutes = date.getMinutes()\n\nmsg.payload = {data:{\"date\":year.toString()+\"-\"+month.toString()+\"-\"+day.toString(),\"time\":hours.toString()+\":\"+minutes.toString()+\":00\"}}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 581.5,
-        "y": 99,
+        "x": 728.4999771118164,
+        "y": 665.0000247955322,
         "wires": [
             [
                 "6720ae91.770f4"
@@ -5091,8 +5115,8 @@
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
-        "x": 830,
-        "y": 109,
+        "x": 976.9999771118164,
+        "y": 675.0000247955322,
         "wires": [
             []
         ]
@@ -5225,41 +5249,6 @@
         "x": 582.017333984375,
         "y": 1479.34375,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "fa6a6e32.e844e",
-        "type": "trigger-state",
-        "z": "2f1b5793.37aa38",
-        "name": "",
-        "server": "5d298046.09a7b",
-        "entityid": "binary_sensor.presence_16",
-        "entityidfiltertype": "exact",
-        "debugenabled": false,
-        "constraints": [
-            {
-                "id": "namzsvhql2",
-                "targetType": "this_entity",
-                "targetValue": "",
-                "propertyType": "current_state",
-                "propertyValue": "new_state.state",
-                "comparatorType": "is",
-                "comparatorValueDatatype": "str",
-                "comparatorValue": "on"
-            }
-        ],
-        "constraintsmustmatch": "all",
-        "outputs": 2,
-        "customoutputs": [],
-        "outputinitially": false,
-        "state_type": "str",
-        "x": 183.07986450195312,
-        "y": 240.9027910232544,
-        "wires": [
-            [
-                "c2974243.089ca"
-            ],
             []
         ]
     },
@@ -5429,6 +5418,823 @@
             ],
             [
                 "c469b652.87ab58"
+            ]
+        ]
+    },
+    {
+        "id": "3e779990.375d26",
+        "type": "api-call-service",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "notify",
+        "service": "messenger",
+        "data": "{\"message\":\"Posten kom nettopp\", \"target\": [\"BROADCAST\"]}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1232.0173511505127,
+        "y": 784.0107841491699,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2059081d.aebd78",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_2",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 402.01741790771484,
+        "y": 75.01042556762695,
+        "wires": [
+            [
+                "7f3d7976.46f8d8"
+            ],
+            [
+                "8a7dab9e.d6c578"
+            ]
+        ]
+    },
+    {
+        "id": "8a7dab9e.d6c578",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_2\",\"color_name\":\"peachpuff\",\"brightness\":200}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 671.0173568725586,
+        "y": 111.12155342102051,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7f3d7976.46f8d8",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.light_2\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 668.0173950195312,
+        "y": 62.121543884277344,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f4544840.fb2198",
+        "type": "api-current-state",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "light.light_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 408.01741790771484,
+        "y": 192.0104103088379,
+        "wires": [
+            [
+                "dd929cba.3f689"
+            ],
+            [
+                "74c8e931.ff5d08"
+            ]
+        ]
+    },
+    {
+        "id": "74c8e931.ff5d08",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"light.light_3\",\"color_name\":\"peachpuff\",\"brightness\":200}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 677.0173568725586,
+        "y": 228.12153816223145,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dd929cba.3f689",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "light",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"light.light_3\"}",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "x": 674.0173950195312,
+        "y": 179.12152862548828,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ff78d5d.c6c363",
+        "type": "debug",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 501.07640838623047,
+        "y": 570.6111364364624,
+        "wires": []
+    },
+    {
+        "id": "87bc8f92.a90c3",
+        "type": "trigger-state",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "entityid": "binary_sensor.openclose_22",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "hum1vbzodnb",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "off"
+            },
+            {
+                "id": "3ujf0xt5lyj",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "previous_state",
+                "propertyValue": "old_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "on"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 219.0729217529297,
+        "y": 772.8923721313477,
+        "wires": [
+            [
+                "8ff50cfd.aa711"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "438cdd5c.242614",
+        "type": "join",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "300",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 813.0764293670654,
+        "y": 776.7920236587524,
+        "wires": [
+            [
+                "12cd205.9b3e1e"
+            ]
+        ]
+    },
+    {
+        "id": "12d61986.dac776",
+        "type": "function",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "func": "msg.payload = \"0\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 622.0693702697754,
+        "y": 749.5106496810913,
+        "wires": [
+            [
+                "438cdd5c.242614"
+            ]
+        ]
+    },
+    {
+        "id": "8ff50cfd.aa711",
+        "type": "function",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "func": "msg.payload = \"1\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 618.0173187255859,
+        "y": 783.0105016231537,
+        "wires": [
+            [
+                "438cdd5c.242614"
+            ]
+        ]
+    },
+    {
+        "id": "12cd205.9b3e1e",
+        "type": "switch",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "01",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "10",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 955.0693702697754,
+        "y": 774.2710552215576,
+        "wires": [
+            [],
+            [],
+            [
+                "3e779990.375d26"
+            ]
+        ]
+    },
+    {
+        "id": "603d508f.4b84a",
+        "type": "api-call-service",
+        "z": "4adf2b12.26e9d4",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "toggle",
+        "data": "{\"entity_id\":\"switch.extra\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 451.16668701171875,
+        "y": 249.55557250976562,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f2c49b0f.875b78",
+        "type": "server-state-changed",
+        "z": "2f1b5793.37aa38",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "entityidfilter": "binary_sensor.presence_16",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 216.06944274902344,
+        "y": 220.92363739013672,
+        "wires": [
+            [
+                "c2974243.089ca"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "88af2e5d.15fc6",
+        "type": "api-call-service",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_on",
+        "data": "{\"entity_id\":\"switch.extra\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1370.0693969726562,
+        "y": 1048.2742776870728,
+        "wires": [
+            [
+                "9ed57eee.1beea"
+            ]
+        ]
+    },
+    {
+        "id": "b121fce1.ca3d7",
+        "type": "poll-state",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "updateinterval": "30",
+        "updateIntervalUnits": "seconds",
+        "outputinitially": false,
+        "outputonchanged": false,
+        "entity_id": "sensor.temperature_7",
+        "state_type": "num",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 173.0729217529297,
+        "y": 1030.1910562515259,
+        "wires": [
+            [
+                "87a928b0.c86538"
+            ]
+        ]
+    },
+    {
+        "id": "76c3ea21.8df2a4",
+        "type": "api-call-service",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "service_domain": "switch",
+        "service": "turn_off",
+        "data": "{\"entity_id\":\"switch.extra\"}",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1526.0173797607422,
+        "y": 970.3440189361572,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87a928b0.c86538",
+        "type": "api-current-state",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.extra",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 473.0833282470703,
+        "y": 1027.0938186645508,
+        "wires": [
+            [
+                "efa6e2d3.851ff",
+                "f860120c.105f5"
+            ],
+            [
+                "755ccc63.568a34"
+            ]
+        ]
+    },
+    {
+        "id": "efa6e2d3.851ff",
+        "type": "switch",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "21",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 753.0798950195312,
+        "y": 1004.8265676498413,
+        "wires": [
+            [
+                "2df79a52.52ef46"
+            ]
+        ]
+    },
+    {
+        "id": "755ccc63.568a34",
+        "type": "switch",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "20",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 641.0763816833496,
+        "y": 1076.8194303512573,
+        "wires": [
+            [
+                "9e2a7542.59df38"
+            ]
+        ]
+    },
+    {
+        "id": "9e2a7542.59df38",
+        "type": "time-range-switch",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "startTime": "22:00",
+        "endTime": "06:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 774.0764389038086,
+        "y": 1081.847276687622,
+        "wires": [
+            [],
+            [
+                "97881543.5b3798"
+            ]
+        ]
+    },
+    {
+        "id": "97881543.5b3798",
+        "type": "api-current-state",
+        "z": "f93c10c0.1dd628",
+        "name": "Heater automation on?",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_boolean.heater_auto_on",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 971.0173110961914,
+        "y": 1053.232759475708,
+        "wires": [
+            [
+                "ed290761.a842b8",
+                "3f7fa165.ee090e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9ed57eee.1beea",
+        "type": "function",
+        "z": "f93c10c0.1dd628",
+        "name": "has been autostarted",
+        "func": "flow.set(\"autostarted\",1)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1447.017478942871,
+        "y": 1120.343765258789,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2df79a52.52ef46",
+        "type": "function",
+        "z": "f93c10c0.1dd628",
+        "name": "autostarted?",
+        "func": "if (flow.get(\"autostarted\") == 1 ) {\nmsg.payload = 1\n} else {\n    msg.payload = 0\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 902.0173492431641,
+        "y": 1005.2328586578369,
+        "wires": [
+            [
+                "aedabbf9.dfb3d8"
+            ]
+        ]
+    },
+    {
+        "id": "aedabbf9.dfb3d8",
+        "type": "switch",
+        "z": "f93c10c0.1dd628",
+        "name": "if autostarted",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1065.0173568725586,
+        "y": 1004.2328042984009,
+        "wires": [
+            [
+                "970bb60a.3a0c78"
+            ]
+        ]
+    },
+    {
+        "id": "ed290761.a842b8",
+        "type": "api-current-state",
+        "z": "f93c10c0.1dd628",
+        "name": "C er hjemme",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": true,
+        "entity_id": "device_tracker.charlotte_iphone",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1006.0173187255859,
+        "y": 1100.454849243164,
+        "wires": [
+            [
+                "478ff49c.cd2bdc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3f7fa165.ee090e",
+        "type": "api-current-state",
+        "z": "f93c10c0.1dd628",
+        "name": "H er hjemme",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": true,
+        "entity_id": "device_tracker.henrik_note9",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1016.0173416137695,
+        "y": 1149.4547996520996,
+        "wires": [
+            [
+                "478ff49c.cd2bdc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f894e0c.deb3a2",
+        "type": "api-current-state",
+        "z": "f93c10c0.1dd628",
+        "name": "C er ikke hjemme",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "device_tracker.charlotte_iphone",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 973.0172080993652,
+        "y": 956.4551467895508,
+        "wires": [
+            [
+                "2da67bba.029b44"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2da67bba.029b44",
+        "type": "api-current-state",
+        "z": "f93c10c0.1dd628",
+        "name": "H er ikke hjemme",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "device_tracker.henrik_note9",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1174.017292022705,
+        "y": 951.4551738500595,
+        "wires": [
+            [
+                "970bb60a.3a0c78"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f860120c.105f5",
+        "type": "api-current-state",
+        "z": "f93c10c0.1dd628",
+        "name": "Heater automation on?",
+        "server": "5d298046.09a7b",
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_boolean.heater_auto_on",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 768.0173187255859,
+        "y": 958.4550514221191,
+        "wires": [
+            [
+                "f894e0c.deb3a2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bca000fb.e3cc7",
+        "type": "join",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": null,
+        "y": null,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b525ad63.5361b",
+        "type": "join",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": null,
+        "y": null,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "478ff49c.cd2bdc",
+        "type": "join",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "2",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1178.0763931274414,
+        "y": 1113.236210823059,
+        "wires": [
+            [
+                "88af2e5d.15fc6"
+            ]
+        ]
+    },
+    {
+        "id": "970bb60a.3a0c78",
+        "type": "join",
+        "z": "f93c10c0.1dd628",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "2",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1353.017318725586,
+        "y": 967.3437747955322,
+        "wires": [
+            [
+                "76c3ea21.8df2a4"
             ]
         ]
     }
