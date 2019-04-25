@@ -123,10 +123,8 @@ scene:
 
 device_tracker:
   - platform: nmap_tracker
-    hosts:
-      - !secret host1
-      - !secret host2
-    home_interval: 30
+    hosts: 192.168.1.1-30
+    home_interval: 20
     consider_home: 0:30:00
     interval_seconds: 30
     new_device_defaults:
@@ -144,12 +142,6 @@ light:
       192.168.1.19:
         name: 'Bath'
 
-panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: !secret configurator_ip
-    
 
 media_player:
   - platform: spotify
@@ -180,8 +172,20 @@ sensor:
       since_watered:
         friendly_name: "Days since watered"
         value_template: "{{ states('counter.plant_counter') }}"
+      vibration_level:
+        friendly_name: "Vibration Level"
+        value_template: "{{ state_attr('binary_sensor.vibration_sensor', 'vibrationstrength')|int }}"
+        unit_of_measurement: 'level'
 
 notify:
   - name: Messenger
     platform: facebook
     page_access_token: EAAGEs48WsEwBAL5u2xABu0EWlaEAA8KZBnZBKb27n6c5tlEzUDZCLOTuokKujaVFSPCzP0NOv8TULaDiWqE79gzZAGe6ZB7ZBg4og6dS5povcZCbLUPGZA9TPn3LEPDJ35PBGqWC4vVnBbpG4cZCWHiS8bMDPn5tpRiHa8YadtzW2HwZDZD
+
+climate:
+  - platform: generic_thermostat
+    name: Living Room Thermostat
+    heater: switch.extra
+    target_sensor: sensor.temperature_7
+    cold_tolerance: 1
+    hot_tolerance: 0

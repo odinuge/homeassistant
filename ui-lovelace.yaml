@@ -12,7 +12,8 @@ resources:
 
 title: Home
 views:
-  - title: Home
+  - path: default_view
+    title: Home
 
     badges:
       - device_tracker.henrik_note9
@@ -31,7 +32,7 @@ views:
               width: 260px
               font-size: 120%
               color: white
-            
+
             card:
               type: glance
               show_state: true
@@ -51,7 +52,7 @@ views:
               margin-left: auto
               margin-right: 0px
               color: white
-            
+
             card:
               type: glance
               show_state: true
@@ -85,17 +86,49 @@ views:
             - entity: switch.extra
               name: Heater
               icon: mdi:fire
-            - entity: input_boolean.heater_auto_on
-              name: Keep house warm from 06-22
-              icon: mdi:settings
         - type: entities
           show_header_toggle: false
           entities:
             - entity: input_datetime.only_time
               name: When are you waking up?
+              icon: mdi:alarm
             - entity: input_boolean.wake_up_light
               name: Wake-up light
-              icon: mdi:settings
+              icon: mdi:bell
+
+      - type: vertical-stack
+        cards:
+        - type: horizontal-stack
+          cards:
+          - type: sensor
+            entity: sensor.temperature_7
+            name: Stue
+            graph: line
+          - type: sensor
+            entity: sensor.temperature_11
+            name: Soverom
+            graph: line
+
+
+        - type: entities
+          title: Living room
+          show_header_toggle: true
+          entities:
+            - entity: light.sofa
+              icon: mdi:sofa
+            - entity: switch.light_4
+              icon: mdi:floor-lamp
+              name: Floor
+            - entity: light.light_1
+              icon: mdi:desk-lamp
+              name: Work
+        - type: entities
+          title: Bath
+          show_header_toggle: false
+          entities:
+            - entity: light.bath
+              name: Wall
+              icon: mdi:wall-sconce-flat
 
       - type: vertical-stack
         cards:
@@ -164,28 +197,6 @@ views:
                       service_data:
                         entity_id: scene.party
         - type: entities
-          title: Living room
-          show_header_toggle: true
-          entities:
-            - entity: light.sofa
-              icon: mdi:sofa
-            - entity: switch.light_4
-              icon: mdi:floor-lamp
-              name: Floor
-            - entity: light.light_1
-              icon: mdi:desk-lamp
-              name: Work
-        - type: entities
-          title: Bath
-          show_header_toggle: false
-          entities:
-            - entity: light.bath
-              name: Wall
-              icon: mdi:wall-sconce-flat
-
-      - type: vertical-stack
-        cards:
-        - type: entities
           show_header_toggle: false
           entities:
             - entity: media_player.tv
@@ -228,7 +239,7 @@ views:
                 - name: Hits Hits Hits
                   type: playlist
                   url: spotify:user:spotify:playlist:37i9dQZF1DWUJF24WXSSyO
-                - name: Morgenkaffe 
+                - name: Morgenkaffe
                   type: playlist
                   url: spotify:user:spotify:playlist:37i9dQZF1DX1j96SzHv3js
                 - name: Piano Dinner
@@ -264,15 +275,50 @@ views:
               hide_mute: true
               hide_power: true
               group: true
-        - type: sensor
-          entity: sensor.temperature_7
-          name: Stue
-          graph: line
-        - type: sensor
-          entity: sensor.temperature_11
-          name: Soverom
-          graph: line
-        
+
+
+  - path: information
+    title: Information
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: history-graph
+            title: Vaskemaskin
+            entities:
+            - sensor.vibration_level
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.temperature_7
+                name: Stue
+                graph: line
+              - type: sensor
+                entity: sensor.humidity_8
+                name: Stue
+                graph: line
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.temperature_11
+                name: Soverom
+                graph: line
+              - type: sensor
+                entity: sensor.humidity_12
+                name: Soverom
+                graph: line
+      - type: vertical-stack
+        cards:
+          - type: history-graph
+            title: Door sensors
+            entities:
+            - entity: binary_sensor.openclose_21
+              name: Mailbox
+            - entity: binary_sensor.openclose_22
+              name: Door
+          - type: thermostat
+            entity: climate.living_room_thermostat
+
+
        #- type: media-control
        # entity: media_player.kitchen_tv
     #  - type: media-control
