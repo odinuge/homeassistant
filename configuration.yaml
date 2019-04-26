@@ -60,7 +60,8 @@ sun:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 lovelace:
   mode: yaml
@@ -162,9 +163,9 @@ counter:
   plant_counter:
     initial: 0
     step: 1
-    
-    
-    
+
+
+
 sensor:
   - platform: yr
   - platform: template
@@ -176,6 +177,10 @@ sensor:
         friendly_name: "Vibration Level"
         value_template: "{{ state_attr('binary_sensor.vibration_sensor', 'vibrationstrength')|int }}"
         unit_of_measurement: 'level'
+      air_index:
+        friendly_name: "Air Quality Index"
+        value_template: "{{ state_attr('air_quality.air_quality_norway', 'air_quality_index') }}"
+        unit_of_measurement: ' '
 
 notify:
   - name: Messenger
@@ -189,3 +194,6 @@ climate:
     target_sensor: sensor.temperature_7
     cold_tolerance: 1
     hot_tolerance: 0
+
+air_quality:
+  - platform: norway_air

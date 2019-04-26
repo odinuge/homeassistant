@@ -282,10 +282,16 @@ views:
     cards:
       - type: vertical-stack
         cards:
-          - type: history-graph
-            title: Vaskemaskin
-            entities:
-            - sensor.vibration_level
+          - type: sensor
+            entity: sensor.air_index
+            name: Air quality (3 days)
+            graph: line
+            hours_to_show: 72
+          - type: sensor
+            entity: sensor.pressure_9
+            name: Air pressure (3 days)
+            graph: line
+            hours_to_show: 72
           - type: horizontal-stack
             cards:
               - type: sensor
@@ -308,6 +314,10 @@ views:
                 graph: line
       - type: vertical-stack
         cards:
+          - type: history-graph
+            title: Vaskemaskin
+            entities:
+            - sensor.vibration_level
           - type: history-graph
             title: Door sensors
             entities:
