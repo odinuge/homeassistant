@@ -1,3 +1,4 @@
+    
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
@@ -10,12 +11,18 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Oslo
-  # Customization file
-  customize: !include customize.yaml
+  customize:
+    person.henrik:
+      entity_picture: /henrik.png
 
+
+lovelace:
+  mode: yaml
 
 # Enables the frontend
 frontend:
+
+person:
 
 system_health:
 
@@ -62,9 +69,6 @@ sun:
 tts:
   - platform: google_translate
     service_name: google_say
-
-lovelace:
-  mode: yaml
 
 # Cloud
 cloud:
@@ -185,15 +189,7 @@ sensor:
 notify:
   - name: Messenger
     platform: facebook
-    page_access_token: EAAGEs48WsEwBAL5u2xABu0EWlaEAA8KZBnZBKb27n6c5tlEzUDZCLOTuokKujaVFSPCzP0NOv8TULaDiWqE79gzZAGe6ZB7ZBg4og6dS5povcZCbLUPGZA9TPn3LEPDJ35PBGqWC4vVnBbpG4cZCWHiS8bMDPn5tpRiHa8YadtzW2HwZDZD
-
-climate:
-  - platform: generic_thermostat
-    name: Living Room Thermostat
-    heater: switch.extra
-    target_sensor: sensor.temperature_7
-    cold_tolerance: 1
-    hot_tolerance: 0
+    page_access_token: EAAGEs48WsEwBAEKOzIZAbEy2ZC2I0fB24TiHktgp3J9YrwMBuPRZAMA5zFy8qmDYgy1KXK7NRhzNIhgfWCwbbrD3eQ8cBK9GYsZBoP6OUq7NwzfROqsgIrCwnU6muCbKC9ODW5Yktfi8DeRoRFsJ9eZCSq5dVcp7dfYgbq90kZCUi9JO9mZAtb7
 
 air_quality:
   - platform: norway_air
